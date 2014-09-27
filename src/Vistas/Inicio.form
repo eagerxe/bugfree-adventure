@@ -23,8 +23,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace pref="576" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="533" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="lblInicio" min="-2" max="-2" attributes="0"/>
@@ -33,6 +33,13 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnCrearExamen" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="514" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btnXMLtoLatex" alignment="1" min="-2" pref="283" max="-2" attributes="0"/>
+                          <Component id="btnLatextoXML" min="-2" pref="283" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="464" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -44,8 +51,12 @@
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Component id="lblInicio" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-              <Component id="btnCrearExamen" min="-2" pref="77" max="-2" attributes="0"/>
-              <EmptySpace pref="474" max="32767" attributes="0"/>
+              <Component id="btnCrearExamen" min="-2" pref="80" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <Component id="btnLatextoXML" min="-2" pref="80" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+              <Component id="btnXMLtoLatex" min="-2" pref="80" max="-2" attributes="0"/>
+              <EmptySpace pref="155" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,6 +76,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearExamenActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLatextoXML">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Convertir examen de LaTeX a XML Moodle"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLatextoXMLActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnXMLtoLatex">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Convertir examen de XML Moodle a LaTeX"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXMLtoLatexActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

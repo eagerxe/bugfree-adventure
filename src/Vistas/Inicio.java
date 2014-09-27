@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
+
+import Controladores.CtrlInicio;
 
 /**
  *
@@ -12,7 +9,7 @@ package Vistas;
 public class Inicio extends javax.swing.JFrame {
 
     /**
-     * Creates new form Inicio
+     * Crea la nueva forma Inicio
      */
     public Inicio() {
         initComponents();
@@ -29,6 +26,8 @@ public class Inicio extends javax.swing.JFrame {
 
         lblInicio = new javax.swing.JLabel();
         btnCrearExamen = new javax.swing.JButton();
+        btnLatextoXML = new javax.swing.JButton();
+        btnXMLtoLatex = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,19 +41,38 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        btnLatextoXML.setText("Convertir examen de LaTeX a XML Moodle");
+        btnLatextoXML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLatextoXMLActionPerformed(evt);
+            }
+        });
+
+        btnXMLtoLatex.setText("Convertir examen de XML Moodle a LaTeX");
+        btnXMLtoLatex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXMLtoLatexActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(576, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(533, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblInicio)
                         .addGap(579, 579, 579))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnCrearExamen)
-                        .addGap(514, 514, 514))))
+                        .addGap(514, 514, 514))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnXMLtoLatex, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLatextoXML, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(464, 464, 464))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -62,18 +80,42 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addComponent(lblInicio)
                 .addGap(85, 85, 85)
-                .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(474, Short.MAX_VALUE))
+                .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(btnLatextoXML, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(btnXMLtoLatex, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Botón para seleccionar la creación de un examen
+     * @param evt 
+     */
     private void btnCrearExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearExamenActionPerformed
-        CrearExamen CE = new CrearExamen();
-        CE.setVisible(true);
-        dispose();        
+        
+        CtrlInicio CI = new CtrlInicio(1);    
+        dispose();
+        
     }//GEN-LAST:event_btnCrearExamenActionPerformed
+    /**
+     * Botón para seleccionar la conversion de un examen de LaTeX a XML Moodle
+     * @param evt 
+     */
+    private void btnLatextoXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLatextoXMLActionPerformed
+        
+        CtrlInicio CI = new CtrlInicio(2);    
+        dispose();
+        
+    }//GEN-LAST:event_btnLatextoXMLActionPerformed
+
+    private void btnXMLtoLatexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXMLtoLatexActionPerformed
+        CtrlInicio CI = new CtrlInicio(3);    
+        dispose();
+    }//GEN-LAST:event_btnXMLtoLatexActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,6 +154,8 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearExamen;
+    private javax.swing.JButton btnLatextoXML;
+    private javax.swing.JButton btnXMLtoLatex;
     private javax.swing.JLabel lblInicio;
     // End of variables declaration//GEN-END:variables
 }

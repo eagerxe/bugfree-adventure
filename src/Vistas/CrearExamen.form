@@ -3,9 +3,6 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1280, 720]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -26,43 +23,117 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCrearExamen" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace pref="232" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblDireccion3" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDireccion2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDireccion" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDireccionDestino" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblOpciones" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="lblDireccion" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtDireccion" min="-2" pref="173" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblOrdenAleatorio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="cBoxOrdenAleatorio" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblNumeroDePreguntas" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtNumeroPreguntasPorExamen" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="930" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="txtDireccion" alignment="1" min="-2" pref="409" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Component id="txtDireccion2" min="-2" pref="409" max="-2" attributes="0"/>
+                                  <Component id="txtDireccion3" alignment="1" min="-2" pref="409" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="txtDireccionDestino" alignment="1" min="-2" pref="409" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnAgregarArchivo" max="32767" attributes="0"/>
+                          <Component id="btnAgregarArchivo2" max="32767" attributes="0"/>
+                          <Component id="btnAgregarArchivo3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnAgregarDireccionDestino" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnCrearExamen" min="-2" pref="134" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnCancelar" min="-2" pref="133" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="202" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblMensaje" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="429" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblCrearExamen" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="618" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Component id="lblCrearExamen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblMensaje" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAgregarArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="579" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDireccion2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAgregarArchivo2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDireccion2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtDireccion3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAgregarArchivo3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDireccion3" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAgregarDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="lblOpciones" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblOrdenAleatorio" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="cBoxOrdenAleatorio" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblNumeroDePreguntas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNumeroPreguntasPorExamen" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="186" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnCancelar" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="btnCrearExamen" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,25 +144,99 @@
         <Property name="text" type="java.lang.String" value="Crear examen"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAceptar">
+    <Component class="javax.swing.JButton" name="btnCrearExamen">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Aceptar"/>
+        <Property name="text" type="java.lang.String" value="Crear examen"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearExamenActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDireccion">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Introducir direcci&#xf3;n:"/>
+        <Property name="text" type="java.lang.String" value="Direccion del examen LaTeX:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDireccion">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAgregarArchivo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar archivo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarArchivoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMensaje">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregue las direcciones donde se encuentra localizados o localizados los examenes."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDireccion2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Direccion del examen LaTeX:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtDireccion2">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAgregarArchivo2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar archivo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDireccion3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Direccion del examen LaTeX:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtDireccion3">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAgregarArchivo3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar archivo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDireccionDestino">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Direccion destino:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtDireccionDestino">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAgregarDireccionDestino">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar direccion"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblOpciones">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Opciones:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblOrdenAleatorio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Orden aleatorio de las preguntas:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNumeroDePreguntas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Numero de preguntas de de cada examen:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="cBoxOrdenAleatorio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Orden aleatorio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNumeroPreguntasPorExamen">
     </Component>
   </SubComponents>
 </Form>
