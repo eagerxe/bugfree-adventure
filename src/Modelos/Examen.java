@@ -34,6 +34,41 @@ public class Examen {
     public Iterator<Pregunta> getIteradorPreguntasSeparadas(){
         return iteradorPreguntasSeparadas;
     }
-    
+    public Examen ordenAleatorio(Examen examen){
+        Examen examenAleatorio=new Examen();
+        int total=0;
+        int aleatorio=0;
+        ArrayList<Pregunta> preguntas =  new ArrayList();
+        Pregunta P = new Pregunta();
+        //obtiene la lista de preguntas de un examen
+        preguntas = examen.getListaPreguntasSeparadas();
+        //obtiene el tamaño del ArrayList
+        total = examen.getListaPreguntasSeparadas().size();
+        //obtiene preguntas en orden aleatorio y las guarda en examenAleatorio
+        for(int i=0;i<total;i++){
+            aleatorio =(int) Math.floor(Math.random()*(preguntas.size()));
+            P = preguntas.get(aleatorio);
+            examenAleatorio.setPreguntaALista(P);
+            boolean exito = preguntas.remove(P);
+        }
+            
+        return examenAleatorio;
+    }
+    public Examen escogerNPreguntas(Examen examen,int numeroPreguntas){
+        Examen examenNPreguntas=new Examen();
+        int aleatorio=0;
+        ArrayList<Pregunta> preguntas =  new ArrayList();
+        Pregunta P = new Pregunta();
+        //obtiene la lista de preguntas de un examen
+        preguntas = examen.getListaPreguntasSeparadas();
+        //obtiene preguntas en orden aleatorio y las guarda en examenAleatorio
+        for(int i=0;i<numeroPreguntas;i++){
+            aleatorio =(int) Math.floor(Math.random()*(preguntas.size()));
+            P = preguntas.get(aleatorio);
+            examenNPreguntas.setPreguntaALista(P);
+            boolean exito = preguntas.remove(P);
+        }    
+        return examenNPreguntas;
+    }
     
 }

@@ -18,24 +18,23 @@ public class ExamenTex {
     private ArrayList <String> lineasPregunta = new ArrayList();
     
     
-    /**
-     * Escribe la lista de preguntas guardadas a un examen en LaTeX en la 
-     * direccion destino
-     * @param direccionDestino Ubicacion donde se creara el examen en LaTeX
-     * @param examen contiene la lista de preguntas separadas que tendra el 
-     * examen
-     */
-    public ExamenTex(String direccionDestino,Examen examen){
-        this.examen=examen;
-        try{
+    
+    public ExamenTex(){
         
+    }
+    
+    
+    /**
+     * Genera la cabecera del examen
+     * @param direccionDestino Ubicacion donde se creara el examen en LaTeX
+     */
+    public void generarCabecera(String direccionDestino){
+        try{
             PrintWriter pw 
             = new PrintWriter(new BufferedWriter(new FileWriter(direccionDestino)));
-        
-                
                 //cabecera del examen
-                pw.write("\\documentclass [addpoints,100pt]{exam}"
-                        + "\n"
+                pw.write("\\documentclass [addpoints,100pt]{exam}\n"
+                        + "\\begin{document}\n"
                         + "\t\\begin{center}\n"
                         + "\t\\fbox {\\fbox{\\parbox{5.5 in}{\\centering\n"
                         + "\tInstrucciones: Responde las preguntas siguientes.}}}\n"
@@ -45,7 +44,27 @@ public class ExamenTex {
                         + "\t\\vspace{0.2in}\n"
                         + "\t\\makebox[\\textwidth]{Nombre del profesor: \\enspace \\hrulefill}\n"
                         + "\t\\begin{questions}\n");
-                
+        pw.close();
+        }catch(IOException er){
+            System.out.println("Excepcion en flujos para crear la cabecera del examen "+er.getMessage());
+        }
+    }
+    
+    
+    /**
+     * Escribe la lista de preguntas guardadas a un examen en LaTeX en la 
+     * direccion destino
+     * @param direccionDestino Ubicacion donde se creara el examen en LaTeX
+     * @param examen contiene la lista de preguntas separadas que tendra el 
+     * examen
+     */
+    public void generarExamenTex(String direccionDestino,Examen examen){
+        this.examen=examen;
+        try{
+            
+            PrintWriter pw 
+            = new PrintWriter(new BufferedWriter(new FileWriter(direccionDestino,true)));
+         
                 //obtiene la lista de preguntas del examen
                 listaPreguntas = this.examen.getListaPreguntasSeparadas();
                 int numeroPreguntas = listaPreguntas.size();
@@ -65,17 +84,26 @@ public class ExamenTex {
                     }
                     
                 }
-                //final del examen
-                pw.write("\t\\end{questions}\n");
-                pw.write("\\end{document}");
                 
         pw.close();
         }catch(IOException er){
-            System.out.println("Excepcion en los flujos "+er.getMessage());
+            System.out.println("Excepcion en los flujos generar examen "+er.getMessage());
         }
         
-        
-        
-        
+      
     }
+    
+    public void generarFinalExamen(String direccionDestino){
+        try{
+            PrintWriter pw 
+            = new PrintWriter(new BufferedWriter(new FileWriter(direccionDestino,true)));   
+                //final del examen
+                pw.write("\t\\end{questions}\n");
+                pw.write("\\end{document}");
+        pw.close();        
+        }catch(IOException er){
+            System.out.println("Excepcion en el final del examen "+er.getMessage());
+        }
+    }
+    
 }
