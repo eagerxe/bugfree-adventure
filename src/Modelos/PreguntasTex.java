@@ -117,7 +117,78 @@ public class PreguntasTex {
         return examen;
         
     }
-    
+    public Examen obtenertipoPregunta(Examen examen){
+        // contiene la lista de preguntas del examen 
+        ArrayList<Pregunta> listaP = new ArrayList();
+        // examen que contiene las preguntas clasificadas
+        Examen examenClasificado =  new Examen();
+        int numeroPreguntas = 0;
+        Pregunta P = new Pregunta();
+        
+        listaP = examen.getListaPreguntasSeparadas();
+        numeroPreguntas = listaP.size();
+        
+        
+        //lee una por una las preguntas en listaP
+        for (int i=0;i<numeroPreguntas;i++){
+            
+            
+            //obtener una pregunta de la listaP 
+            P = listaP.get(i);
+            //contiene la lista de renglones de una pregunta en LaTeX
+            ArrayList<String> listaPreguntas =  new ArrayList ();
+            //obtener la lista de renglones de la Pregunta
+            listaPreguntas=P.getListaPreguntas();
+            
+            int numeroRenglones;
+            numeroRenglones = listaPreguntas.size();
+            int j=0;
+            for (j=0;j<numeroRenglones;j++){
+                String renglon = listaPreguntas.get(j);
+                
+                //Preguntas de opción múltiple
+                
+                //si el renglon contiene question guarda la pregunta que se 
+                //encuentra en el siguiente renglon
+                if(renglon.contains("\\question")){
+                    j+=1;
+                    renglon=listaPreguntas.get(j);
+                    P.setPregunta(renglon);
+                    System.out.println(renglon + " Pregunta");
+                //guarda las opciones despues de este renglon  
+                }else if(renglon.contains("\\begin{choices}")){
+                    P.setTipo("multichoice");
+                    j+=1;
+                    renglon=listaPreguntas.get(j);
+                    while(!(renglon.contains("\\end{choices}"))){
+                        if(renglon.contains("\\choice")){
+                            P.setRespuestas(renglon.substring(10));
+                            System.out.println(renglon.substring(10) + " Opcion");
+                        //si el renglon contiene la pregunta correcta la guarda en respuesta     
+                        }else if(renglon.contains("\\CorrectChoice")){
+                            P.setRespuesta(renglon.substring(17));
+                            //renglon.split("\\CorrectChoice");
+                            System.out.println(renglon.substring(15) + " Respuesta Correcta");
+                        }
+                        j+=1;   
+                        renglon=listaPreguntas.get(j);
+                    }
+                    
+                }
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+        }
+        
+        
+        return examen;
+    }
     
     
 }

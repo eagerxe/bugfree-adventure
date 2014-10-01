@@ -34,6 +34,11 @@ public class Examen {
     public Iterator<Pregunta> getIteradorPreguntasSeparadas(){
         return iteradorPreguntasSeparadas;
     }
+    /**
+     * Ordena las preguntas en un examen de forma aleatoria
+     * @param examen el examen que sera ordenado de forma aleatoria
+     * @return examenAleatorio examen ordenado de forma aleatoria
+     */
     public Examen ordenAleatorio(Examen examen){
         Examen examenAleatorio=new Examen();
         int total=0;
@@ -54,6 +59,12 @@ public class Examen {
             
         return examenAleatorio;
     }
+    /**
+     * Crea un examen escogiendo solo n preguntas del total
+     * @param examen el examen con todas las preguntas 
+     * @param numeroPreguntas numero de preguntas que se requieren de ese examen
+     * @return examenNPreguntas examen que cuenta con n preguntas del total
+     */
     public Examen escogerNPreguntas(Examen examen,int numeroPreguntas){
         Examen examenNPreguntas=new Examen();
         int aleatorio=0;

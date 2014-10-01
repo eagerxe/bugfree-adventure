@@ -74,7 +74,7 @@ public class Pregunta {
         return listaDePreguntas.get(posicion);
     }
     /**
-     * Lista de Preguntas
+     * Obtiene la lista de Preguntas
      * @return listaDePreguntas
      */
     public ArrayList getListaPreguntas(){

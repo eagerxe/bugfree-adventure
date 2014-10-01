@@ -73,11 +73,14 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="lblCrearExamen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="618" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="533" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="486" max="-2" attributes="0"/>
-              <Component id="lblAgregarDireccionDestino" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblEscojaOpciones" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAgregarDireccionDestino" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -85,9 +88,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="lblCrearExamen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Component id="lblMensaje" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -115,7 +118,9 @@
                   <Component id="txtDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAgregarDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblEscojaOpciones" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Component id="lblOpciones" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -127,7 +132,7 @@
                   <Component id="lblNumeroDePreguntas" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboNumeroPreguntas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="103" max="32767" attributes="0"/>
+              <EmptySpace pref="89" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCancelar" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="btnCrearExamen" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
@@ -140,7 +145,10 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblCrearExamen">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Crear examen"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="24" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Crear examen LaTeX"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCrearExamen">
@@ -256,6 +264,11 @@
             <StringItem index="3" value="Item 4"/>
           </StringArray>
         </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEscojaOpciones">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Escoja las opciones."/>
       </Properties>
     </Component>
   </SubComponents>
