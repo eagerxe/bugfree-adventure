@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -153,6 +155,7 @@ public class PreguntasTex {
                 if(renglon.contains("\\question")){
                     j+=1;
                     renglon=listaPreguntas.get(j);
+                    renglon=renglon.replaceAll("\t", "");
                     P.setPregunta(renglon);
                     System.out.println(renglon + " Pregunta");
                 //guarda las opciones despues de este renglon  
@@ -161,14 +164,65 @@ public class PreguntasTex {
                     j+=1;
                     renglon=listaPreguntas.get(j);
                     while(!(renglon.contains("\\end{choices}"))){
-                        if(renglon.contains("\\choice")){
-                            P.setRespuestas(renglon.substring(10));
-                            System.out.println(renglon.substring(10) + " Opcion");
+                        renglon=renglon.replaceAll("\t", "");
+                        
+                        
+                        if(renglon.contains("Correct")){
+                            renglon=renglon.replace("\\CorrectChoice ","");
+                            P.setRespuesta(renglon);
+                            System.out.println(renglon+ " Respuesta correcta");
                         //si el renglon contiene la pregunta correcta la guarda en respuesta     
-                        }else if(renglon.contains("\\CorrectChoice")){
-                            P.setRespuesta(renglon.substring(17));
-                            //renglon.split("\\CorrectChoice");
-                            System.out.println(renglon.substring(15) + " Respuesta Correcta");
+                        }else if(renglon.contains("\\choice")){
+                            renglon=renglon.replace("\\choice ","");
+                            P.setRespuestas(renglon);
+                            System.out.println(renglon + " Opción");
+                            
+                        }
+                        j+=1;   
+                        renglon=listaPreguntas.get(j);
+                    }
+                    
+                }else if(renglon.contains("\\begin{oneparchoices}")){
+                    P.setTipo("multichoice");
+                    j+=1;
+                    renglon=listaPreguntas.get(j);
+                    while(!(renglon.contains("\\end{oneparchoices}"))){
+                        renglon=renglon.replaceAll("\t", "");
+                        
+                        
+                        if(renglon.contains("Correct")){
+                            renglon=renglon.replace("\\CorrectChoice ","");
+                            P.setRespuesta(renglon);
+                            System.out.println(renglon+ " Respuesta correcta");
+                        //si el renglon contiene la pregunta correcta la guarda en respuesta     
+                        }else if(renglon.contains("\\choice")){
+                            renglon=renglon.replace("\\choice ","");
+                            P.setRespuestas(renglon);
+                            System.out.println(renglon + " Opción");
+                            
+                        }
+                        j+=1;   
+                        renglon=listaPreguntas.get(j);
+                    }
+                    
+                }else if(renglon.contains("\\begin{oneparcheckboxes}")){
+                    P.setTipo("multichoice");
+                    j+=1;
+                    renglon=listaPreguntas.get(j);
+                    while(!(renglon.contains("\\end{oneparcheckboxes}"))){
+                        renglon=renglon.replaceAll("\t", "");
+                        
+                        
+                        if(renglon.contains("Correct")){
+                            renglon=renglon.replace("\\CorrectChoice ","");
+                            P.setRespuesta(renglon);
+                            System.out.println(renglon+ " Respuesta correcta");
+                        //si el renglon contiene la pregunta correcta la guarda en respuesta     
+                        }else if(renglon.contains("\\choice")){
+                            renglon=renglon.replace("\\choice ","");
+                            P.setRespuestas(renglon);
+                            System.out.println(renglon + " Opción");
+                            
                         }
                         j+=1;   
                         renglon=listaPreguntas.get(j);
