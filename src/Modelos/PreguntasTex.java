@@ -125,7 +125,7 @@ public class PreguntasTex {
         // examen que contiene las preguntas clasificadas
         Examen examenClasificado =  new Examen();
         int numeroPreguntas = 0;
-        Pregunta P = new Pregunta();
+        
         
         listaP = examen.getListaPreguntasSeparadas();
         numeroPreguntas = listaP.size();
@@ -133,7 +133,7 @@ public class PreguntasTex {
         
         //lee una por una las preguntas en listaP
         for (int i=0;i<numeroPreguntas;i++){
-            
+            Pregunta P = new Pregunta();
             
             //obtener una pregunta de la listaP 
             P = listaP.get(i);
@@ -166,12 +166,12 @@ public class PreguntasTex {
                     while(!(renglon.contains("\\end{choices}"))){
                         renglon=renglon.replaceAll("\t", "");
                         
-                        
+                        //si el renglon contiene la pregunta correcta la guarda en respuesta
                         if(renglon.contains("Correct")){
                             renglon=renglon.replace("\\CorrectChoice ","");
                             P.setRespuesta(renglon);
                             System.out.println(renglon+ " Respuesta correcta");
-                        //si el renglon contiene la pregunta correcta la guarda en respuesta     
+                        //si el renglon contiene una opcion incorrecta la guarda en respuestas    
                         }else if(renglon.contains("\\choice")){
                             renglon=renglon.replace("\\choice ","");
                             P.setRespuestas(renglon);
@@ -181,7 +181,7 @@ public class PreguntasTex {
                         j+=1;   
                         renglon=listaPreguntas.get(j);
                     }
-                    
+                //preguntas de opción multiple en un parrafo    
                 }else if(renglon.contains("\\begin{oneparchoices}")){
                     P.setTipo("multichoice");
                     j+=1;
@@ -189,12 +189,12 @@ public class PreguntasTex {
                     while(!(renglon.contains("\\end{oneparchoices}"))){
                         renglon=renglon.replaceAll("\t", "");
                         
-                        
+                        //si el renglon contiene la pregunta correcta la guarda en respuesta
                         if(renglon.contains("Correct")){
                             renglon=renglon.replace("\\CorrectChoice ","");
                             P.setRespuesta(renglon);
                             System.out.println(renglon+ " Respuesta correcta");
-                        //si el renglon contiene la pregunta correcta la guarda en respuesta     
+                        //si el renglon contiene una opcion incorrecta la guarda en respuestas     
                         }else if(renglon.contains("\\choice")){
                             renglon=renglon.replace("\\choice ","");
                             P.setRespuestas(renglon);
@@ -204,31 +204,62 @@ public class PreguntasTex {
                         j+=1;   
                         renglon=listaPreguntas.get(j);
                     }
-                    
+                //Preguntas verdadero o falso    
                 }else if(renglon.contains("\\begin{oneparcheckboxes}")){
-                    P.setTipo("multichoice");
+                    P.setTipo("truefalse");
                     j+=1;
                     renglon=listaPreguntas.get(j);
                     while(!(renglon.contains("\\end{oneparcheckboxes}"))){
                         renglon=renglon.replaceAll("\t", "");
                         
-                        
+                        //si el renglon contiene la pregunta correcta la guarda en respuesta
                         if(renglon.contains("Correct")){
                             renglon=renglon.replace("\\CorrectChoice ","");
                             P.setRespuesta(renglon);
                             System.out.println(renglon+ " Respuesta correcta");
-                        //si el renglon contiene la pregunta correcta la guarda en respuesta     
+                        //si el renglon contiene una opcion incorrecta la guarda en respuestas     
                         }else if(renglon.contains("\\choice")){
                             renglon=renglon.replace("\\choice ","");
                             P.setRespuestas(renglon);
-                            System.out.println(renglon + " Opción");
-                            
+                            System.out.println(renglon + " Opción");    
                         }
                         j+=1;   
                         renglon=listaPreguntas.get(j);
                     }
+                //Preguntas de respuesta corta
+                }else if(renglon.contains("\\answerline [")){
+                    P.setTipo("numerical");
                     
+                    renglon=renglon.replaceAll("\t", "");
+                    renglon=renglon.replace("\\answerline ","");
+                    renglon=renglon.replace("[","");
+                    renglon=renglon.replace("]","");
+                    renglon=renglon.replace(" ","");
+                    
+                    //se guarda la respuesta correcta
+                    P.setRespuesta(renglon);
+                    try{
+                        Integer.parseInt(renglon);
+                        System.out.println("Tipo de respuesta numerica");
+                    }catch(NumberFormatException exc){
+                        System.out.println("la cadena de caracteres no es un entero");
+                        P.setTipo("shortanswer");
+                    }
+                    System.out.println(renglon + " Respuesta corta/numerica");
+                }else if(renglon.contains("\\makeemptybox{1in}")){
+                    P.setTipo("essay");
+                    System.out.println(" ensayo caja");
+                }else if(renglon.contains("\\vspace*{\\stretch{1}}")){
+                    P.setTipo("essay");
+                    System.out.println(" ensayo blanco");
+                }else if(renglon.contains("\\fillwithlines{1in}")){
+                    P.setTipo("essay");
+                    System.out.println(" ensayo lineas");
+                }else if(renglon.contains("\\fillwithdottedlines{1in}")){
+                    P.setTipo("essay");
+                    System.out.println(" ensayo lineas punteadas");
                 }
+                
                 
             }
             
