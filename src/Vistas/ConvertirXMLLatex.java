@@ -5,6 +5,11 @@
  */
 package Vistas;
 
+import Controladores.CtrlConvertirLatextoXML;
+import Controladores.CtrlConvertirXMLtoLatex;
+import Controladores.CtrlInicio;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author miguelhernandez
@@ -28,31 +33,149 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
     private void initComponents() {
 
         lblConvertirExamen = new javax.swing.JLabel();
+        lblAgregueDireccion = new javax.swing.JLabel();
+        lblDireccionExamen = new javax.swing.JLabel();
+        txtDireccionOrigen = new javax.swing.JTextField();
+        btnAgregarArchivo = new javax.swing.JButton();
+        lblAgregueDestino = new javax.swing.JLabel();
+        lblDireccionDestino = new javax.swing.JLabel();
+        txtDireccionDestino = new javax.swing.JTextField();
+        btnDireccionDestino = new javax.swing.JButton();
+        btnConvertirExamen = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
+        lblConvertirExamen.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         lblConvertirExamen.setText("Convertir un examen de XML Moodle a LaTeX");
+
+        lblAgregueDireccion.setText("Agregue la doreccion donde se encuentra localizado el examen.");
+
+        lblDireccionExamen.setText("Dirección del examen XML:");
+
+        btnAgregarArchivo.setText("Agregar archivo");
+        btnAgregarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarArchivoActionPerformed(evt);
+            }
+        });
+
+        lblAgregueDestino.setText("Agregue la direccion de destino del nuevo examen.");
+
+        lblDireccionDestino.setText("Direccion destino:");
+
+        btnDireccionDestino.setText("Agregar directorio");
+        btnDireccionDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDireccionDestinoActionPerformed(evt);
+            }
+        });
+
+        btnConvertirExamen.setText("Convertir examen");
+        btnConvertirExamen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConvertirExamenActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(493, 493, 493)
-                .addComponent(lblConvertirExamen)
-                .addContainerGap(505, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(320, 320, 320)
+                                .addComponent(lblConvertirExamen))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(388, 388, 388)
+                                .addComponent(lblAgregueDireccion))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(222, 222, 222)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblDireccionExamen)
+                                            .addComponent(lblDireccionDestino))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                                            .addComponent(txtDireccionDestino)))
+                                    .addComponent(btnConvertirExamen, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAgregarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDireccionDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(390, 390, 390)
+                        .addComponent(lblAgregueDestino)))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(54, 54, 54)
                 .addComponent(lblConvertirExamen)
-                .addContainerGap(678, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(lblAgregueDireccion)
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDireccionExamen)
+                    .addComponent(txtDireccionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregarArchivo))
+                .addGap(65, 65, 65)
+                .addComponent(lblAgregueDestino)
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDireccionDestino)
+                    .addComponent(txtDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDireccionDestino))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConvertirExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(107, 107, 107))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArchivoActionPerformed
+        JFileChooser escogerDireccion = new JFileChooser();
+        escogerDireccion.showOpenDialog(this);
+        String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
+        txtDireccionOrigen.setText(direc);
+    }//GEN-LAST:event_btnAgregarArchivoActionPerformed
+
+    private void btnDireccionDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDireccionDestinoActionPerformed
+        JFileChooser escogerDireccion = new JFileChooser();
+        escogerDireccion.setFileSelectionMode(1);
+        escogerDireccion.showOpenDialog(this);
+        String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
+        txtDireccionDestino.setText(direc);
+    }//GEN-LAST:event_btnDireccionDestinoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        CtrlInicio CI = new CtrlInicio(4);
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnConvertirExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirExamenActionPerformed
+        String direccionOrigen,direccionDestino;
+        direccionOrigen=txtDireccionOrigen.getText();
+        direccionDestino=txtDireccionDestino.getText();
+        CtrlConvertirXMLtoLatex CXTL = new CtrlConvertirXMLtoLatex(direccionOrigen,direccionDestino);
+    }//GEN-LAST:event_btnConvertirExamenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,6 +213,16 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarArchivo;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConvertirExamen;
+    private javax.swing.JButton btnDireccionDestino;
+    private javax.swing.JLabel lblAgregueDestino;
+    private javax.swing.JLabel lblAgregueDireccion;
     private javax.swing.JLabel lblConvertirExamen;
+    private javax.swing.JLabel lblDireccionDestino;
+    private javax.swing.JLabel lblDireccionExamen;
+    private javax.swing.JTextField txtDireccionDestino;
+    private javax.swing.JTextField txtDireccionOrigen;
     // End of variables declaration//GEN-END:variables
 }

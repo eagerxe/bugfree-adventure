@@ -25,18 +25,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblConvertirExamenLtoX" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="387" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnConvertirExamen" min="-2" pref="180" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" min="-2" pref="180" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <Component id="lblConvertirExamenLtoX" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="387" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="288" max="-2" attributes="0"/>
@@ -49,18 +39,22 @@
                   <Component id="lblAgregueDireccionDestino" min="-2" max="-2" attributes="0"/>
                   <Component id="lblAgregueDireccion" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="txtDireccionDestino" alignment="0" pref="414" max="32767" attributes="0"/>
-                          <Component id="txtDireccionOrigen" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btnConvertirExamen" min="-2" pref="180" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="txtDireccionDestino" alignment="0" pref="414" max="32767" attributes="0"/>
+                              <Component id="txtDireccionOrigen" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnAgregarArchivo" max="32767" attributes="0"/>
                           <Component id="btnDireccionDestino" max="32767" attributes="0"/>
+                          <Component id="btnCancelar" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="197" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="172" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -146,7 +140,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnDireccionDestino">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar direcci&#xf3;n"/>
+        <Property name="text" type="java.lang.String" value="Agregar directorio"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDireccionDestinoActionPerformed"/>
