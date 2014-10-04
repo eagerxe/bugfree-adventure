@@ -1,6 +1,7 @@
 package Controladores;
 
 import Modelos.Examen;
+import Modelos.ExamenXML;
 import Modelos.PreguntasTex;
 
 /**
@@ -26,6 +27,15 @@ public class CtrlConvertirLatextoXML {
         Examen examen= new Examen(); 
         examen=PT.separarPreguntasTex(direccionOrigen);
         examen=PT.obtenertipoPregunta(examen);
+        
+        //Se crea una instancia de la clase ExamenXML
+        ExamenXML EXML = new ExamenXML();
+        
+        EXML.generarCabecera(direccionDestino);
+        EXML.generarExamenXML(direccionDestino, examen);
+        EXML.generarFinalExamen(direccionDestino);
+        
+        
         
         
     }

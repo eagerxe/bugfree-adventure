@@ -174,7 +174,8 @@ public class PreguntasTex {
                         //si el renglon contiene una opcion incorrecta la guarda en respuestas    
                         }else if(renglon.contains("\\choice")){
                             renglon=renglon.replace("\\choice ","");
-                            P.setRespuestas(renglon);
+                            //P.setRespuestas(renglon);
+                            P.setRespuestaenLista(renglon);
                             System.out.println(renglon + " Opción");
                             
                         }
@@ -197,7 +198,8 @@ public class PreguntasTex {
                         //si el renglon contiene una opcion incorrecta la guarda en respuestas     
                         }else if(renglon.contains("\\choice")){
                             renglon=renglon.replace("\\choice ","");
-                            P.setRespuestas(renglon);
+                            //P.setRespuestas(renglon);
+                            P.setRespuestaenLista(renglon);
                             System.out.println(renglon + " Opción");
                             
                         }
@@ -220,13 +222,14 @@ public class PreguntasTex {
                         //si el renglon contiene una opcion incorrecta la guarda en respuestas     
                         }else if(renglon.contains("\\choice")){
                             renglon=renglon.replace("\\choice ","");
-                            P.setRespuestas(renglon);
+                            //P.setRespuestas(renglon);
+                            P.setRespuestaenLista(renglon);
                             System.out.println(renglon + " Opción");    
                         }
                         j+=1;   
                         renglon=listaPreguntas.get(j);
                     }
-                //Preguntas de respuesta corta
+                //Preguntas de respuesta numerica o corta
                 }else if(renglon.contains("\\answerline [")){
                     P.setTipo("numerical");
                     
@@ -246,6 +249,7 @@ public class PreguntasTex {
                         P.setTipo("shortanswer");
                     }
                     System.out.println(renglon + " Respuesta corta/numerica");
+                //Respuestas tipo ensayo     
                 }else if(renglon.contains("\\makeemptybox{1in}")){
                     P.setTipo("essay");
                     System.out.println(" ensayo caja");
@@ -263,16 +267,13 @@ public class PreguntasTex {
                 
             }
             
-            
-            
-            
-            
-            
-            
+        //se agrega la pregunta con el tipo, la respuesta y las respuestas incorrectas
+        //separadas en el examen
+        examenClasificado.setPreguntaALista(P);
         }
         
         
-        return examen;
+        return examenClasificado;
     }
     
     

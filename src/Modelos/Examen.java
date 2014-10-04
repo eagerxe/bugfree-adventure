@@ -20,17 +20,33 @@ public class Examen {
         listaPreguntasSeparadas = new ArrayList<>();
         iteradorPreguntasSeparadas = listaPreguntasSeparadas.iterator();
     }
-    
+    /**
+     * Agrega la pregunta P a la listaPreguntasSeparadas
+     * @param P pregunta que se desea añadir a la lista
+     */
     public void setPreguntaALista(Pregunta P){
         boolean exito;
         exito =listaPreguntasSeparadas.add(P);
     }
+    /**
+     * Obtiene la pregunta en la posicion i de la listaPreguntasSeparadas
+     * @param i posicion en la lista de la pregunta deseada 
+     * @return pregunta en la posicion i
+     */
     public Pregunta getPreguntaDeLista(int i){
         return listaPreguntasSeparadas.get(i);
     }
+    /**
+     * Obtiene la listaPreguntasSeparadas
+     * @return listaPreguntasSeparadas
+     */
     public ArrayList<Pregunta> getListaPreguntasSeparadas(){
         return listaPreguntasSeparadas;
     }
+    /**
+     * Obtiene el iterador de preguntas asociado a la listaPreguntasSeparadas
+     * @return iteradorPreguntasSeparadas
+     */
     public Iterator<Pregunta> getIteradorPreguntasSeparadas(){
         return iteradorPreguntasSeparadas;
     }

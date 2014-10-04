@@ -20,6 +20,7 @@ public class Pregunta {
     private int posicion=0;
     private ArrayList<String> listaDePreguntas;
     private Iterator<String> iteradorPreguntas;
+    private ArrayList<String> listaRespuestas;
     /**
      * Contructor del objeto Pregunta que sera utilizado como auxiliar para 
      * separar las preguntas de un examen
@@ -34,6 +35,7 @@ public class Pregunta {
         posicion=0;
         listaDePreguntas=new ArrayList();
         iteradorPreguntas=listaDePreguntas.iterator();
+        listaRespuestas=new ArrayList();
     }
     /**
      * Para establecer el tipo de pregunta; puede tener los valores:
@@ -78,6 +80,13 @@ public class Pregunta {
      */
     public void setPreguntaenLista(String linea){
         listaDePreguntas.add(linea);
+    }
+    /**
+     * Añade una respuesta incorrecta a la lista de respuestas
+     * @param linea respuesta incorrecta
+     */
+    public void setRespuestaenLista(String linea){
+        listaRespuestas.add(linea);
     }
     /**
      * Para obtener el tipo de pregunta
@@ -125,6 +134,13 @@ public class Pregunta {
      */
     public ArrayList getListaPreguntas(){
         return listaDePreguntas;
+    }
+    /**
+     * Obtienen la lista de respuestas incorrectas
+     * @return la lista de respuestas incorrectas
+     */
+    public ArrayList getListaRespuestas(){
+        return listaRespuestas;
     }
     /**
      * Devuelve el iterador asociado a la listaDePreguntas

@@ -92,7 +92,10 @@ public class ExamenTex {
         
       
     }
-    
+    /**
+     * Genera el final de examen
+     * @param direccionDestino direccion donde se ubica el examen
+     */
     public void generarFinalExamen(String direccionDestino){
         try{
             PrintWriter pw 
