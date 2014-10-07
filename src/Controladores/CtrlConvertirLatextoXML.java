@@ -13,7 +13,7 @@ public class CtrlConvertirLatextoXML {
     
     
     /**
-     * Se encarga de la conversion del examen XML dado uno en LaTeX
+     * Se encarga de 
      * @param direccionOrigen la direccion del examen en LaTeX
      * @param direccionDestino la direccion donde se generara el examen XML
      */

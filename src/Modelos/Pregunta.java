@@ -15,7 +15,6 @@ public class Pregunta {
     private String tipoPregunta;
     private String pregunta;
     private String respuesta;
-    private String[] respuestas;
     private int numeroPreguntas;
     private int posicion=0;
     private ArrayList<String> listaDePreguntas;
@@ -30,7 +29,6 @@ public class Pregunta {
         tipoPregunta=null;
         pregunta=null;
         respuesta=null; 
-        respuestas=new String[25];
         numeroPreguntas=0;
         posicion=0;
         listaDePreguntas=new ArrayList();
@@ -57,15 +55,6 @@ public class Pregunta {
      */
     public void setRespuesta(String respuesta){
         this.respuesta=respuesta;
-    }
-    /**
-     * Para establecer las respuestas incorrectas necesarias para algunos tipos
-     * de preguntas como las de opcion multiple, verdadero/falso y númerica.
-     * @param respuestas Arreglo de respuestas incorrectas
-     */
-    public void setRespuestas(String respuestas){
-            this.respuestas[posicion]=respuestas;
-            posicion++;
     }
     /**
      * Para establecer 
@@ -109,14 +98,7 @@ public class Pregunta {
     public String getRespuesta(){
         return respuesta;
     }
-    /**
-     * Devuelve la respuesta incorrecta del arreglo respuestas en la posición n
-     * @param n la posicion de la respuesta incorrecta en el arreglo respuestas
-     * @return una respuesta incorrecta
-     */
-    public String getRespuestas(int n){
-        return respuestas[n];
-    }
+    
     public int getNumeroPreguntas(){
         return numeroPreguntas;
     }
