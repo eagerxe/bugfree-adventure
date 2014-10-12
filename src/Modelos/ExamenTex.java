@@ -12,10 +12,9 @@ import java.util.Iterator;
  * @author miguelhernandez
  */
 public class ExamenTex {
-    private String linea = null;
-    private Examen examen = new Examen();
-    private ArrayList<Pregunta> listaPreguntas = new ArrayList();
-    private ArrayList <String> lineasPregunta = new ArrayList();
+    private String linea;
+    private ArrayList<Pregunta> listaPreguntas;
+    private ArrayList <String> lineasPregunta;
     
     
     
@@ -59,18 +58,20 @@ public class ExamenTex {
      * examen
      */
     public void generarExamenTex(String direccionDestino,Examen examen){
-        this.examen=examen;
+        linea = null;
+        listaPreguntas = new ArrayList();
+        lineasPregunta = new ArrayList();
         try{
             
             PrintWriter pw 
             = new PrintWriter(new BufferedWriter(new FileWriter(direccionDestino,true)));
          
                 //obtiene la lista de preguntas del examen
-                listaPreguntas = this.examen.getListaPreguntasSeparadas();
+                listaPreguntas = examen.getListaPreguntasSeparadas();
                 int numeroPreguntas = listaPreguntas.size();
-                int i =0;
+                
                 //obtiene las preguntas de la lista y las lineas de la pregunta
-                for(i=0;i<numeroPreguntas;i++){
+                for(int i=0;i<numeroPreguntas;i++){
                     Pregunta P = new Pregunta();
                     P=listaPreguntas.get(i);
                     
@@ -107,6 +108,102 @@ public class ExamenTex {
         }catch(IOException er){
             System.out.println("Excepcion en el final del examen "+er.getMessage());
         }
+    }
+    /**
+     * Para generar un examen Tex a partir de un XML
+     * @param direccionDestino la direccion donde se generará el examen tex
+     * @param examen el examen que contiene las preguntas con las que se generará
+     * el nuevo examen
+     */
+    public void generarExamenTexXML(String direccionDestino,Examen examen){
+        linea = null;
+        listaPreguntas = new ArrayList();
+        lineasPregunta = new ArrayList();
+        try{
+            
+            PrintWriter pw 
+            = new PrintWriter(new BufferedWriter(new FileWriter(direccionDestino,true)));
+            
+            //obtiene la lista de preguntas del examen
+            listaPreguntas = examen.getListaPreguntasSeparadas();
+            int numeroPreguntas = listaPreguntas.size();
+            //obtiene las preguntas de la lista y las lineas de la pregunta
+            for(int i=0;i<numeroPreguntas;i++){
+                Pregunta P = new Pregunta();
+                P=listaPreguntas.get(i);
+                if(P.getTipoPregunta().contains("multichoice")){
+                    pw.write("\t\\question\n");
+                    pw.write("\t"+ P.getPregunta() +"\n");
+                    pw.write("\t\\vspace {0.1 in}\n");
+                    pw.write("\t\\begin{choices}\n");
+                    //Escribir la respuesta correcta aleatoriamente
+                    ArrayList<String> listaAleatorio= new ArrayList();
+                    //Agrego respuestas incorrectas
+                    listaAleatorio=P.getListaRespuestas();
+                    //agrego respuesta correcta
+                    listaAleatorio.add(P.getRespuesta());
+                    //genera en orden aleatorio
+                    int nPreguntas = listaAleatorio.size();
+                    int aleatorio;
+                    for (int j=0;j<nPreguntas;j++){
+                      aleatorio =(int) Math.floor(Math.random()*(listaAleatorio.size()));
+                      String esCorrecta = listaAleatorio.get(aleatorio);
+                      if (esCorrecta.contains(P.getRespuesta())){
+                          
+                          pw.write("\t\\CorrectChoice " + esCorrecta +"\n");
+                          
+                      }else{
+                          
+                          pw.write("\t\\choice " + esCorrecta + "\n");
+                      
+                      }
+                      
+                      String remove = listaAleatorio.remove(aleatorio);
+                        
+                    }
+                    pw.write("\t\\end{choices}\n");
+                    pw.write("\t\\answerline\n");
+                }else if(P.getTipoPregunta().contains("truefalse")){
+                    
+                    pw.write("\t\\question\n");
+                    pw.write("\t"+ P.getPregunta() +"\n");
+                    pw.write("\t\\vspace {0.1 in}\n");
+                    pw.write("\t\\begin{oneparcheckboxes}\n");
+                    //respuesta verdadera o falsa
+                    if(P.getRespuesta().contains("true")){
+                        pw.write("\t\\CorrectChoice Verdadero\n");
+                        pw.write("\t\\choice Falso\n");
+                    }else if(P.getRespuesta().contains("false")){
+                        pw.write("\t\\choice Verdadero\n");
+                        pw.write("\t\\CorrectChoice Falso\n");
+                    }
+                    
+                    pw.write("\t\\end{oneparcheckboxes}\n");
+                }else if(P.getTipoPregunta().contains("shortanswer")){
+                    
+                    pw.write("\t\\question\n");
+                    pw.write("\t"+ P.getPregunta() +"\n");
+                    pw.write("\t\\answerline [" +P.getRespuesta()+ "]\n");
+                    
+                }else if(P.getTipoPregunta().contains("essay")){
+                    pw.write("\t\\question\n");
+                    pw.write("\t"+ P.getPregunta() +"\n");
+                    pw.write("\t\\makeemptybox{2in}\n");
+                    
+                    
+                }else if(P.getTipoPregunta().contains("numerical")){
+                    pw.write("\t\\question\n");
+                    pw.write("\t"+ P.getPregunta() +"\n");
+                    pw.write("\t\\answerline [" +P.getRespuesta()+ "]\n");
+                }
+                
+                 
+            }
+                
+        pw.close();        
+        }catch(IOException er){
+            System.out.println("Excepcion en los flujos para generar el examen "+er.getMessage());
+        }    
     }
     
 }
