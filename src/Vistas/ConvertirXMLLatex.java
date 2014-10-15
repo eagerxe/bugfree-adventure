@@ -9,6 +9,7 @@ import Controladores.CtrlConvertirLatextoXML;
 import Controladores.CtrlConvertirXMLtoLatex;
 import Controladores.CtrlInicio;
 import javax.swing.JFileChooser;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -175,6 +176,7 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
         direccionOrigen=txtDireccionOrigen.getText();
         direccionDestino=txtDireccionDestino.getText();
         CtrlConvertirXMLtoLatex CXTL = new CtrlConvertirXMLtoLatex(direccionOrigen,direccionDestino);
+        showMessageDialog(null, "Examen creado");
     }//GEN-LAST:event_btnConvertirExamenActionPerformed
 
     /**

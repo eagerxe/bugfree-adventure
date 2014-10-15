@@ -35,6 +35,7 @@
                           <Component id="btnXMLtoLatex" alignment="1" min="-2" pref="283" max="-2" attributes="0"/>
                           <Component id="btnLatextoXML" min="-2" pref="283" max="-2" attributes="0"/>
                           <Component id="btnCrearExamen" alignment="1" min="-2" pref="283" max="-2" attributes="0"/>
+                          <Component id="btnCE" alignment="1" min="-2" pref="283" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="464" max="-2" attributes="0"/>
                   </Group>
@@ -49,11 +50,13 @@
               <Component id="lblInicio" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
               <Component id="btnCrearExamen" min="-2" pref="80" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Component id="btnLatextoXML" min="-2" pref="80" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Component id="btnXMLtoLatex" min="-2" pref="80" max="-2" attributes="0"/>
-              <EmptySpace pref="155" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Component id="btnCE" min="-2" pref="80" max="-2" attributes="0"/>
+              <EmptySpace pref="70" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,6 +92,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXMLtoLatexActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCE">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Crear examen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCEActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

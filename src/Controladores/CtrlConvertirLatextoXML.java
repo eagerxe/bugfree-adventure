@@ -36,8 +36,6 @@ public class CtrlConvertirLatextoXML {
         EXML.generarFinalExamen(direccionDestino);
         
         
-        
-        
     }
     
 }

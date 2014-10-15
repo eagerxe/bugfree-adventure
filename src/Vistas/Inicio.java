@@ -13,6 +13,7 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        btnCE.setVisible(false);
     }
 
     /**
@@ -28,6 +29,7 @@ public class Inicio extends javax.swing.JFrame {
         btnCrearExamen = new javax.swing.JButton();
         btnLatextoXML = new javax.swing.JButton();
         btnXMLtoLatex = new javax.swing.JButton();
+        btnCE = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +57,13 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        btnCE.setText("Crear examen");
+        btnCE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCEActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,7 +78,8 @@ public class Inicio extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnXMLtoLatex, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLatextoXML, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCE, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(464, 464, 464))))
         );
         layout.setVerticalGroup(
@@ -79,11 +89,13 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(lblInicio)
                 .addGap(85, 85, 85)
                 .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
+                .addGap(44, 44, 44)
                 .addComponent(btnLatextoXML, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
+                .addGap(56, 56, 56)
                 .addComponent(btnXMLtoLatex, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addComponent(btnCE, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,6 +126,11 @@ public class Inicio extends javax.swing.JFrame {
         CtrlInicio CI = new CtrlInicio(3);    
         dispose();
     }//GEN-LAST:event_btnXMLtoLatexActionPerformed
+
+    private void btnCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCEActionPerformed
+        CtrlInicio CI = new CtrlInicio(5);
+        dispose();
+    }//GEN-LAST:event_btnCEActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +168,7 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCE;
     private javax.swing.JButton btnCrearExamen;
     private javax.swing.JButton btnLatextoXML;
     private javax.swing.JButton btnXMLtoLatex;

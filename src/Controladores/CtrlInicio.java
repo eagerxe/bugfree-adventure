@@ -1,5 +1,6 @@
 package Controladores;
 
+import Vistas.CExamen;
 import Vistas.ConvertirLatexXML;
 import Vistas.ConvertirXMLLatex;
 import Vistas.CrearExamen;
@@ -31,6 +32,9 @@ public class CtrlInicio {
             //cancelar 
             Inicio I =  new Inicio();
             I.setVisible(true);
+        }else if (opcion == 5){
+            CExamen CExa = new CExamen ();
+            CExa.setVisible(true);
         }
  
         

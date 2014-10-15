@@ -3,10 +3,7 @@ import Modelos.Examen;
 import Modelos.ExamenTex;
 import Modelos.PreguntasTex;
 import java.util.ArrayList;
-//import Vistas.CrearExamen;
-//import java.io.*;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
+
 /**
  *
  * @author miguelhernandez
@@ -39,11 +36,20 @@ public class CtrlCrearExamen {
         //Se escogen solo n preguntas del examen
         if(numeroPreguntas.contains("Todas")){
             System.out.println("todas las preguntas");
-        }else if (numeroPreguntas.contains("5")){
+        }else if (numeroPreguntas.contentEquals("5")){
             int numeroPregunta=5;
             examen = examen.escogerNPreguntas(examen, numeroPregunta);
-        }else if(numeroPreguntas.contains("10")){
+        }else if(numeroPreguntas.contentEquals("10")){
             int numeroPregunta = 10;
+            examen = examen.escogerNPreguntas(examen, numeroPregunta);
+        }else if(numeroPreguntas.contentEquals("15")){
+            int numeroPregunta = 15;
+            examen = examen.escogerNPreguntas(examen, numeroPregunta);
+        }else if(numeroPreguntas.contentEquals("20")){
+            int numeroPregunta = 20;
+            examen = examen.escogerNPreguntas(examen, numeroPregunta);
+        }else{
+            int numeroPregunta = Integer.parseInt(numeroPreguntas);
             examen = examen.escogerNPreguntas(examen, numeroPregunta);
         }
         
@@ -55,6 +61,8 @@ public class CtrlCrearExamen {
         ET.generarCabecera(direccionDestino);
         ET.generarExamenTex(direccionDestino, examen);
         ET.generarFinalExamen(direccionDestino);
+        
+        
         
     }
     
@@ -82,12 +90,24 @@ public class CtrlCrearExamen {
         //Se escogen solo n preguntas del examen
         if(numeroPreguntas.contains("Todas")){
             System.out.println("todas las preguntas");
-        }else if (numeroPreguntas.contains("5")){
+        }else if (numeroPreguntas.contentEquals("5")){
             int numeroPregunta=5;
             examen = examen.escogerNPreguntas(examen, numeroPregunta);
             examen2 = examen2.escogerNPreguntas(examen2, numeroPregunta);
-        }else if(numeroPreguntas.contains("10")){
+        }else if(numeroPreguntas.contentEquals("10")){
             int numeroPregunta = 10;
+            examen = examen.escogerNPreguntas(examen, numeroPregunta);
+            examen2 = examen.escogerNPreguntas(examen2, numeroPregunta);
+        }else if(numeroPreguntas.contentEquals("15")){
+            int numeroPregunta = 15;
+            examen = examen.escogerNPreguntas(examen, numeroPregunta);
+            examen2 = examen.escogerNPreguntas(examen2, numeroPregunta);
+        }else if(numeroPreguntas.contentEquals("20")){
+            int numeroPregunta = 20;
+            examen = examen.escogerNPreguntas(examen, numeroPregunta);
+            examen2 = examen.escogerNPreguntas(examen2, numeroPregunta);
+        }else{
+            int numeroPregunta = Integer.parseInt(numeroPreguntas);
             examen = examen.escogerNPreguntas(examen, numeroPregunta);
             examen2 = examen.escogerNPreguntas(examen2, numeroPregunta);
         }
@@ -131,13 +151,28 @@ public class CtrlCrearExamen {
         //Se escogen solo n preguntas del examen
         if(numeroPreguntas.contains("Todas")){
             System.out.println("todas las preguntas");
-        }else if (numeroPreguntas.contains("5")){
+        }else if (numeroPreguntas.contentEquals("5")){
             int numeroPregunta=5;
             examen = examen.escogerNPreguntas(examen, numeroPregunta);
             examen2 = examen2.escogerNPreguntas(examen2, numeroPregunta);
             examen3 = examen3.escogerNPreguntas(examen3, numeroPregunta);
-        }else if(numeroPreguntas.contains("10")){
+        }else if(numeroPreguntas.contentEquals("10")){
             int numeroPregunta = 10;
+            examen = examen.escogerNPreguntas(examen, numeroPregunta);
+            examen2 = examen.escogerNPreguntas(examen2, numeroPregunta);
+            examen3 = examen.escogerNPreguntas(examen3, numeroPregunta);
+        }else if(numeroPreguntas.contentEquals("15")){
+            int numeroPregunta = 15;
+            examen = examen.escogerNPreguntas(examen, numeroPregunta);
+            examen2 = examen.escogerNPreguntas(examen2, numeroPregunta);
+            examen3 = examen.escogerNPreguntas(examen3, numeroPregunta);
+        }else if(numeroPreguntas.contentEquals("20")){
+            int numeroPregunta = 20;
+            examen = examen.escogerNPreguntas(examen, numeroPregunta);
+            examen2 = examen.escogerNPreguntas(examen2, numeroPregunta);
+            examen3 = examen.escogerNPreguntas(examen3, numeroPregunta);
+        }else{
+            int numeroPregunta = Integer.parseInt(numeroPreguntas);
             examen = examen.escogerNPreguntas(examen, numeroPregunta);
             examen2 = examen.escogerNPreguntas(examen2, numeroPregunta);
             examen3 = examen.escogerNPreguntas(examen3, numeroPregunta);
