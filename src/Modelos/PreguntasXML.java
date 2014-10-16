@@ -51,23 +51,34 @@ public class PreguntasXML {
                     
                     System.out.println(linea + " La pregunta");
                     
-                }else if(linea.contains("<answer fraction=\"100\">")){
-                    linea = examenOrigen.readLine();
-                    //linea = linea.replaceAll("\\s", "");
-                    linea = linea.replace("<text>","");
-                    linea = linea.replace("</text>","");
-                    linea = linea.trim();
-                    System.out.println(linea + " Respuesta correcta");
-                    P.setRespuesta(linea);
-                }else if (linea.contains("<answer fraction=\"0\">")){
-                    linea = examenOrigen.readLine();
-                    //linea = linea.replaceAll("\\s", "");
-                    linea = linea.replace("<text>","");
-                    linea = linea.replace("</text>","");
-                    linea = linea.trim();
-                    System.out.println(linea + " Respuesta incorrecta");
-                    P.setRespuestaenLista(linea);
-                }else if(linea.contains("</question>")){
+                }else if (linea.contains("<answer fraction=")){
+                    linea=linea.replace("<answer fraction=\"", "");
+                    linea=linea.replace("\">", "");
+                    linea=linea.trim();
+                    //numero contiene el valor de la respuesta para saber si es
+                    //correcta o incorrecta se compara con 0
+                    int numero = Integer.parseInt(linea); 
+                    if(numero==0){
+                        linea = examenOrigen.readLine();
+                        //linea = linea.replaceAll("\\s", "");
+                        linea = linea.replace("<text>","");
+                        linea = linea.replace("</text>","");
+                        linea = linea.trim();
+                        System.out.println(linea + " Respuesta incorrecta");
+                        P.setRespuestaenLista(linea);
+                    }else{
+                        linea = examenOrigen.readLine();
+                        //linea = linea.replaceAll("\\s", "");
+                        linea = linea.replace("<text>","");
+                        linea = linea.replace("</text>","");
+                        linea = linea.trim();
+                        System.out.println(linea + " Respuesta correcta");
+                        P.setRespuesta(linea);
+                        P.setRespuestasCorrectas(linea);
+                    }
+                }
+                
+                else if(linea.contains("</question>")){
                     examen.setPreguntaALista(P);
                 }
                   

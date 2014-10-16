@@ -15,11 +15,10 @@ public class Pregunta {
     private String tipoPregunta;
     private String pregunta;
     private String respuesta;
-    private int numeroPreguntas;
-    private int posicion=0;
     private ArrayList<String> listaDePreguntas;
     private Iterator<String> iteradorPreguntas;
     private ArrayList<String> listaRespuestas;
+    private ArrayList<String> listaRespuestasCorrectas;
     /**
      * Contructor del objeto Pregunta que sera utilizado como auxiliar para 
      * separar las preguntas de un examen
@@ -28,12 +27,11 @@ public class Pregunta {
         
         tipoPregunta=null;
         pregunta=null;
-        respuesta=null; 
-        numeroPreguntas=0;
-        posicion=0;
+        respuesta=null;
         listaDePreguntas=new ArrayList();
         iteradorPreguntas=listaDePreguntas.iterator();
         listaRespuestas=new ArrayList();
+        listaRespuestasCorrectas= new ArrayList();
     }
     /**
      * Para establecer el tipo de pregunta; puede tener los valores:
@@ -57,13 +55,6 @@ public class Pregunta {
         this.respuesta=respuesta;
     }
     /**
-     * Para establecer 
-     * @param n 
-     */
-    public void setNumeroPreguntas(int n){
-        numeroPreguntas=n;
-    }
-    /**
      * Para guardar los renglones leidos del archivo de una pregunta
      * @param linea renglon de una pregunta
      */
@@ -76,6 +67,13 @@ public class Pregunta {
      */
     public void setRespuestaenLista(String linea){
         listaRespuestas.add(linea);
+    }
+    /**
+     * Añade una respuesta correcta a la lista de respuestas correctas
+     * @param linea respuesta correcta
+     */
+    public void setRespuestasCorrectas(String linea){
+        listaRespuestasCorrectas.add(linea);
     }
     /**
      * Para obtener el tipo de pregunta
@@ -98,10 +96,6 @@ public class Pregunta {
     public String getRespuesta(){
         return respuesta;
     }
-    
-    public int getNumeroPreguntas(){
-        return numeroPreguntas;
-    }
     /**
      * Devuelve un renglon en la posicion deseada de la lista de preguntas
      * @param posicion la posicion que se quiere sea devuelta de la lista
@@ -118,11 +112,18 @@ public class Pregunta {
         return listaDePreguntas;
     }
     /**
-     * Obtienen la lista de respuestas incorrectas
-     * @return la lista de respuestas incorrectas
+     * Obtienen la lista de respuestas incorrectas de una pregunta
+     * @return la lista de respuestas incorrectas de una pregunta
      */
     public ArrayList getListaRespuestas(){
         return listaRespuestas;
+    }
+    /**
+     * Obtiene la lista de respuestas correctas de una pregunta
+     * @return la lista de respuestas correctas de una pregunta
+     */
+    public ArrayList getListaRespuestasCorrectas(){
+        return listaRespuestasCorrectas;
     }
     /**
      * Devuelve el iterador asociado a la listaDePreguntas

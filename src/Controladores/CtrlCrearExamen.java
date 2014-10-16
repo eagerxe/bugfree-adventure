@@ -74,13 +74,14 @@ public class CtrlCrearExamen {
         
         //Crea una instancia de PreguntasTex para separar las preguntas 
         PreguntasTex PT = new PreguntasTex();
+        PreguntasTex PT2 = new PreguntasTex();
         //Crea una instancia de ExamenTex donde guardar los examenes creado por 
         //separar preguntas
         Examen examen = new Examen(); 
         Examen examen2 = new Examen();
         //Separa las preguntas de cada examen
         examen = PT.separarPreguntasTex(direccion);
-        examen2 = PT.separarPreguntasTex(direccion2);
+        examen2 = PT2.separarPreguntasTex(direccion2);
         //Se realiza el orden aleatorio a los exámenes
         if(aleatorio){
             examen = examen.ordenAleatorio(examen);
@@ -132,6 +133,8 @@ public class CtrlCrearExamen {
         
         //Crea una instancia de PreguntasTex para separar las preguntas 
         PreguntasTex PT = new PreguntasTex();
+        PreguntasTex PT2 = new PreguntasTex();
+        PreguntasTex PT3 = new PreguntasTex();
         //Crea una instancia de ExamenTex donde guardar los examenes creado por 
         //separar preguntas
         Examen examen = new Examen(); 
@@ -139,8 +142,8 @@ public class CtrlCrearExamen {
         Examen examen3 = new Examen();
         //Separa las preguntas de cada examen
         examen = PT.separarPreguntasTex(direccion);
-        examen2 = PT.separarPreguntasTex(direccion2);
-        examen3 = PT.separarPreguntasTex(direccion3);
+        examen2 = PT2.separarPreguntasTex(direccion2);
+        examen3 = PT3.separarPreguntasTex(direccion3);
         //Se realiza el orden aleatorio a los exámenes
         if(aleatorio){
             examen = examen.ordenAleatorio(examen);

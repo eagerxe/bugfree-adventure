@@ -140,15 +140,30 @@ public class ExamenTex {
                     ArrayList<String> listaAleatorio= new ArrayList();
                     //Agrego respuestas incorrectas
                     listaAleatorio=P.getListaRespuestas();
-                    //agrego respuesta correcta
-                    listaAleatorio.add(P.getRespuesta());
+                    //agrego respuestas correctas
+                    boolean addAll = listaAleatorio.addAll(P.getListaRespuestasCorrectas());
+                    //listaAleatorio.add(P.getRespuesta());
+                    
                     //genera en orden aleatorio
                     int nPreguntas = listaAleatorio.size();
                     int aleatorio;
                     for (int j=0;j<nPreguntas;j++){
                       aleatorio =(int) Math.floor(Math.random()*(listaAleatorio.size()));
+                      
+                      //checar si la respuesta es una respuesta correcta 
                       String esCorrecta = listaAleatorio.get(aleatorio);
-                      if (esCorrecta.contains(P.getRespuesta())){
+                      Boolean esCorrectaB=false;
+                      int numeroCorrectas=P.getListaRespuestasCorrectas().size();
+                      
+                      for(int k=0;k<numeroCorrectas;k++){
+                          String auxiliar =(String) P.getListaRespuestasCorrectas().get(k);
+                          if(auxiliar.equalsIgnoreCase(esCorrecta)){
+                              esCorrectaB=true;
+                          }
+                      }
+                      //si esCorrectaB es true entonces la respuesta es correcta
+                      if (esCorrectaB){
+                          
                           
                           pw.write("\t\\CorrectChoice " + esCorrecta +"\n");
                           
@@ -157,12 +172,13 @@ public class ExamenTex {
                           pw.write("\t\\choice " + esCorrecta + "\n");
                       
                       }
-                      
+                      //quita de la listaAleatorio el elemento aleatorio
                       String remove = listaAleatorio.remove(aleatorio);
                         
                     }
                     pw.write("\t\\end{choices}\n");
                     pw.write("\t\\answerline\n");
+                //pregunta de tipo verdadero o falso    
                 }else if(P.getTipoPregunta().contains("truefalse")){
                     
                     pw.write("\t\\question\n");
@@ -179,18 +195,19 @@ public class ExamenTex {
                     }
                     
                     pw.write("\t\\end{oneparcheckboxes}\n");
+                //pregunta de respuesta corta
                 }else if(P.getTipoPregunta().contains("shortanswer")){
                     
                     pw.write("\t\\question\n");
                     pw.write("\t"+ P.getPregunta() +"\n");
                     pw.write("\t\\answerline [" +P.getRespuesta()+ "]\n");
-                    
+                //pregunta tipo ensayo    
                 }else if(P.getTipoPregunta().contains("essay")){
                     pw.write("\t\\question\n");
                     pw.write("\t"+ P.getPregunta() +"\n");
                     pw.write("\t\\makeemptybox{2in}\n");
                     
-                    
+                //pregunta tipo numerica    
                 }else if(P.getTipoPregunta().contains("numerical")){
                     pw.write("\t\\question\n");
                     pw.write("\t"+ P.getPregunta() +"\n");

@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 public class ExamenXML {
     
+    private Boolean nRespuestasCorrectas;
+    
     public ExamenXML(){
         
     }
@@ -53,10 +55,13 @@ public class ExamenXML {
      * @param examen contiene las preguntas del examen 
      */ 
     public void generarExamenXML(String direccionDestino,Examen examen){
+        
         //this.examen=examen;
         ArrayList<Pregunta> listaPreguntas = new ArrayList();
         ArrayList <String> lineasPregunta = new ArrayList();
         String linea = null;
+        
+        
         try{
             
             PrintWriter pw 
@@ -69,6 +74,7 @@ public class ExamenXML {
                 //obtiene las preguntas de la lista una a una
                 for(int i=0;i<numeroPreguntas;i++){
                     Pregunta P = new Pregunta();
+                    nRespuestasCorrectas=false;
                     P=listaPreguntas.get(i);
                     //Obtiene el tipo de pregunta y de acuerdo a eso genera el 
                     //código XML correspondiente
@@ -84,14 +90,39 @@ public class ExamenXML {
                                 + linea
                                 + "</text>\n"
                                 + "\t</questiontext>\n");
+                        //si la pregunta contiene mas de una respuesta
+                        int numeroRespuestasCorrectas;
+                        numeroRespuestasCorrectas = P.getListaRespuestasCorrectas().size();
+                        if (numeroRespuestasCorrectas>1){
+                            
+                            nRespuestasCorrectas=true;
+                            //calcular la fraccion del valor de la respuesta correcta
+                            double valor = 100/ numeroRespuestasCorrectas;
+                            int val=(int) Math.floor(valor);
+                            //Recorrer las preguntar correctas en la lista
+                            for (int k=0;k<numeroRespuestasCorrectas;k++){
+                                linea =(String) P.getListaRespuestasCorrectas().get(k);
+                                pw.write("\t<answer fraction=\""
+                                        + val
+                                        + "\">\n"
+                                    + "\t\t<text>"
+                                    + linea
+                                    + "</text>\n"
+                                    + "\t\t<feedback><text>Parcialmente correcto!</text></feedback>\n"
+                                    + "\t</answer>\n");
+                            }
+                            
+                            
+                        }else{
+                            linea = P.getRespuesta();
+                            pw.write("\t<answer fraction=\"100\">\n"
+                                    + "\t\t<text>"
+                                    + linea
+                                    + "</text>\n"
+                                    + "\t\t<feedback><text>Correcto!</text></feedback>\n"
+                                    + "\t</answer>\n");
+                        }
                         
-                        linea = P.getRespuesta();
-                        pw.write("\t<answer fraction=\"100\">\n"
-                                + "\t\t<text>"
-                                + linea
-                                + "</text>\n"
-                                + "\t\t<feedback><text>Correct!</text></feedback>\n"
-                                + "\t</answer>\n");
                         ArrayList <String> listaRespuesta = P.getListaRespuestas();
                         int numeroRespuestas = listaRespuesta.size();
                         for (int j=0;j<numeroRespuestas;j++){
@@ -105,7 +136,11 @@ public class ExamenXML {
                             
                         }
                         pw.write("\t<shuffleanswers>1</shuffleanswers>\n");
-                        pw.write("\t<single>true</single>\n");
+                        if(nRespuestasCorrectas){
+                            pw.write("\t<single>false</single>\n");
+                        }else{
+                            pw.write("\t<single>true</single>\n");
+                        }
                         pw.write("\t<answernumbering>abc</answernumbering>\n");
                         pw.write("</question>\n");
                         

@@ -28,7 +28,7 @@ public class CtrlConvertirLatextoXML {
         examen=PT.separarPreguntasTex(direccionOrigen);
         examen=PT.obtenertipoPregunta(examen);
         
-        //Se crea una instancia de la clase ExamenXML
+        //Se crea una instancia de la clase ExamenXML para generar el examen
         ExamenXML EXML = new ExamenXML();
         
         EXML.generarCabecera(direccionDestino);
