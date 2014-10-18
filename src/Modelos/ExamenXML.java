@@ -96,14 +96,12 @@ public class ExamenXML {
                         if (numeroRespuestasCorrectas>1){
                             
                             nRespuestasCorrectas=true;
-                            //calcular la fraccion del valor de la respuesta correcta
-                            double valor = 100/ numeroRespuestasCorrectas;
-                            int val=(int) Math.floor(valor);
+                            
                             //Recorrer las preguntar correctas en la lista
                             for (int k=0;k<numeroRespuestasCorrectas;k++){
                                 linea =(String) P.getListaRespuestasCorrectas().get(k);
                                 pw.write("\t<answer fraction=\""
-                                        + val
+                                        + "100"
                                         + "\">\n"
                                     + "\t\t<text>"
                                     + linea
