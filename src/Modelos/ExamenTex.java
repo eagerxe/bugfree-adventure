@@ -192,6 +192,12 @@ public class ExamenTex {
                     }else if(P.getRespuesta().contains("false")){
                         pw.write("\t\\choice Verdadero\n");
                         pw.write("\t\\CorrectChoice Falso\n");
+                    }else if (P.getRespuesta().contains("Verdadero")){
+                        pw.write("\t\\CorrectChoice Verdadero\n");
+                        pw.write("\t\\choice Falso\n");
+                    }else if(P.getRespuesta().contains("Falso")){
+                        pw.write("\t\\choice Verdadero\n");
+                        pw.write("\t\\CorrectChoice Falso\n");
                     }
                     
                     pw.write("\t\\end{oneparcheckboxes}\n");

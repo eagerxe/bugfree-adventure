@@ -76,6 +76,20 @@ public class Pregunta {
         listaRespuestasCorrectas.add(linea);
     }
     /**
+     * Agrega la lista respuestas a la listaRespuestasCorrectas
+     * @param respuestas La lista de respuestas correctas
+     */
+    public void setListaRespuestasCorrectas(ArrayList<String> respuestas){
+        listaRespuestasCorrectas=respuestas;
+    }
+    /**
+     * Agrega la lista distractores a la listaRespuestas
+     * @param distractores la lista de distractores
+     */
+    public void setListaRespuestas(ArrayList<String> distractores){
+        listaRespuestas=distractores;
+    }
+    /**
      * Para obtener el tipo de pregunta
      * @return tipo de pregunta multichoice|truefalse|shortanswer|essay|numerical
      */
