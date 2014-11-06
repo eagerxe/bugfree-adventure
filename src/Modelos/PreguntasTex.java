@@ -252,32 +252,101 @@ public class PreguntasTex {
                         renglon=listaPreguntas.get(j);
                         renglon=renglon.trim();
                     }
-                //Preguntas verdadero o falso    
+                    
                 }else if(renglon.contains("\\begin{oneparcheckboxes}")){
-                    P.setTipo("truefalse");
+                    
                     j+=1;
                     renglon=listaPreguntas.get(j);
                     renglon=renglon.trim();
-                    while(!(renglon.contains("\\end{oneparcheckboxes}"))){
+                    if (renglon.contains("Verdadero")){
+                        P.setTipo("truefalse");
+                        
+                        while(!(renglon.contains("\\end{oneparcheckboxes}"))){
+                            renglon=renglon.replaceAll("\t", "");
+
+                            //si el renglon contiene la pregunta correcta la guarda en respuesta
+                            if(renglon.contains("orrect")){
+                                renglon=renglon.replace("\\CorrectChoice ","");
+                                renglon=renglon.replace("\\correctchoice ","");
+                                P.setRespuesta(renglon);
+                                System.out.println(renglon+ " Respuesta correcta");
+                            //si el renglon contiene una opcion incorrecta la guarda en respuestas     
+                            }else if(renglon.contains("\\choice")){
+                                renglon=renglon.replace("\\choice ","");
+                                //P.setRespuestas(renglon);
+                                P.setRespuestaenLista(renglon);
+                                System.out.println(renglon + " Opción");    
+                            }
+                            j+=1;   
+                            renglon=listaPreguntas.get(j);
+                            renglon=renglon.trim();
+                        }
+                        
+                        
+                        
+                        
+                    }
+                    else if(renglon.contains("Falso")){
+                        P.setTipo("truefalse");
                         renglon=renglon.replaceAll("\t", "");
                         
-                        //si el renglon contiene la pregunta correcta la guarda en respuesta
-                        if(renglon.contains("orrect")){
-                            renglon=renglon.replace("\\CorrectChoice ","");
-                            renglon=renglon.replace("\\correctchoice ","");
-                            P.setRespuesta(renglon);
-                            System.out.println(renglon+ " Respuesta correcta");
-                        //si el renglon contiene una opcion incorrecta la guarda en respuestas     
-                        }else if(renglon.contains("\\choice")){
-                            renglon=renglon.replace("\\choice ","");
-                            //P.setRespuestas(renglon);
-                            P.setRespuestaenLista(renglon);
-                            System.out.println(renglon + " Opción");    
+                        while(!(renglon.contains("\\end{oneparcheckboxes}"))){
+                            renglon=renglon.replaceAll("\t", "");
+
+                            //si el renglon contiene la pregunta correcta la guarda en respuesta
+                            if(renglon.contains("orrect")){
+                                renglon=renglon.replace("\\CorrectChoice ","");
+                                renglon=renglon.replace("\\correctchoice ","");
+                                P.setRespuesta(renglon);
+                                System.out.println(renglon+ " Respuesta correcta");
+                            //si el renglon contiene una opcion incorrecta la guarda en respuestas     
+                            }else if(renglon.contains("\\choice")){
+                                renglon=renglon.replace("\\choice ","");
+                                //P.setRespuestas(renglon);
+                                P.setRespuestaenLista(renglon);
+                                System.out.println(renglon + " Opción");    
+                            }
+                            j+=1;   
+                            renglon=listaPreguntas.get(j);
+                            renglon=renglon.trim();
                         }
-                        j+=1;   
-                        renglon=listaPreguntas.get(j);
-                        renglon=renglon.trim();
+                        
+                        
+                        
+                        
+                    }else{
+                        P.setTipo("multichoice");
+                        
+                        while(!(renglon.contains("\\end{oneparcheckboxes}"))){
+                            renglon=renglon.replaceAll("\t", "");
+
+                            //si el renglon contiene la pregunta correcta la guarda en respuesta
+                            if(renglon.contains("orrect")){
+                                renglon=renglon.replace("\\CorrectChoice ","");
+                                renglon=renglon.replace("\\correctchoice ","");
+                                renglon=renglon.trim();
+
+                                P.setRespuesta(renglon);
+                                P.setRespuestasCorrectas(renglon);
+                                System.out.println(renglon+ " Respuesta correcta");
+
+                            //si el renglon contiene una opcion incorrecta la guarda en respuestas    
+                            }else if(renglon.contains("\\choice")){
+                                renglon=renglon.replace("\\choice ","");
+                                //P.setRespuestas(renglon);
+                                P.setRespuestaenLista(renglon);
+                                System.out.println(renglon + " Opción");
+
+                            }
+                            j+=1;   
+                            renglon=listaPreguntas.get(j);
+                            renglon=renglon.trim();
+                        }
+                        
+                        
+                        
                     }
+
                 //Preguntas de respuesta numerica o corta
                 }else if(renglon.contains("\\answerline [")){
                     P.setTipo("numerical");
