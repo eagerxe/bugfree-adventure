@@ -1,13 +1,18 @@
 package Modelos;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
+
 
 /**
  *
@@ -18,11 +23,11 @@ public class PreguntasTex {
     private ArrayList<String> listaPreguntas;
     private Iterator<String> iteradorPreguntas;
     Examen examen = new Examen();
-    
+    private ContieneUnaImagen CUI;
     
             
     public PreguntasTex(){
-        
+        CUI=new ContieneUnaImagen();
     }
     /**
      * Separa las preguntas de un examen en LaTeX
@@ -125,10 +130,11 @@ public class PreguntasTex {
     /**
      * Obtiene el tipo de las preguntas (multichoice,truefalse,numerical,shortanswer,essay)
      * @param examen el que contiene las presguntas separadas
+     * @param direccionPadre Contiene la direccion de la carpeta que contiene las imegenes
      * @return examenClasificado que contiene las preguntas separadas con el tipo de 
      * pregunta 
      */
-    public Examen obtenertipoPregunta(Examen examen){
+    public Examen obtenertipoPregunta(Examen examen,String direccionPadre){
         // contiene la lista de preguntas del examen 
         ArrayList<Pregunta> listaP = new ArrayList();
         // examen que contiene las preguntas clasificadas
@@ -153,17 +159,25 @@ public class PreguntasTex {
             
             int numeroRenglones;
             numeroRenglones = listaPreguntas.size();
-            int j=0;
-            for (j=0;j<numeroRenglones;j++){
+                       
+            
+            for (int j=0;j<numeroRenglones;j++){
                 String renglon = listaPreguntas.get(j);
                 renglon=renglon.trim();
-                //Preguntas de opción múltiple
+                
+                //Checar si el renglon contiene una imagen
+                
+                
+                //Termina sustituir la imagen en base 64
                 
                 //si el renglon contiene question guarda la pregunta que se 
                 //encuentra en el siguiente renglon
+                
+                
                 if(renglon.contains("\\question")){
                     //reconocer la pregunta seguida a question
                     renglon = renglon.replace("\\question",""); 
+                    renglon = renglon.replace("{", "");
                     renglon=renglon.replaceAll("\t", "");
                     renglon = renglon.trim();
                     String renglonAuxiliar = renglon;
@@ -174,11 +188,14 @@ public class PreguntasTex {
                     //Mientras no encuentre otro comando LaTeX
                     //guarda lo encontrado en los renglones consecutivos como 
                     //pregunta
-                    while(!renglon.contains("\\")){
+                    String patron="}";
+                    
+                    while(!renglon.matches(patron)){
                         
                         
                         renglon=renglon.replaceAll("\t", "");
                         renglon = renglon.trim();
+                        renglon = CUI.contieneImagenes(renglon, direccionPadre);
                         renglonAuxiliar = renglonAuxiliar + " " + renglon;
                         renglonAuxiliar=renglonAuxiliar.trim();
                         P.setPregunta(renglonAuxiliar);

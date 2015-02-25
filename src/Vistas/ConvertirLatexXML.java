@@ -10,7 +10,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
  * @author miguelhernandez
  */
 public class ConvertirLatexXML extends javax.swing.JFrame {
-
+    private String direccionPadre;
     /**
      * Creates new form ConvertirLatexXML
      */
@@ -148,6 +148,8 @@ public class ConvertirLatexXML extends javax.swing.JFrame {
         JFileChooser escogerDireccion = new JFileChooser();
         escogerDireccion.showOpenDialog(this);
         String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
+        //Obtener la direccion de la carpeta padre para encontrar ahi las imagenes
+        direccionPadre = escogerDireccion.getSelectedFile().getParent();
         txtDireccionOrigen.setText(direc);
         
     }//GEN-LAST:event_btnAgregarArchivoActionPerformed
@@ -164,7 +166,7 @@ public class ConvertirLatexXML extends javax.swing.JFrame {
         String direccionOrigen,direccionDestino;
         direccionOrigen=txtDireccionOrigen.getText();
         direccionDestino=txtDireccionDestino.getText();
-        CtrlConvertirLatextoXML CLTX = new CtrlConvertirLatextoXML(direccionOrigen,direccionDestino);
+        CtrlConvertirLatextoXML CLTX = new CtrlConvertirLatextoXML(direccionOrigen,direccionDestino,direccionPadre);
         showMessageDialog(null, "Examen creado");
     }//GEN-LAST:event_btnConvertirExamenActionPerformed
 
