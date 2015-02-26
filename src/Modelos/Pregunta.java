@@ -15,10 +15,13 @@ public class Pregunta {
     private String tipoPregunta;
     private String pregunta;
     private String respuesta;
+    private String cadenaBase64;
+    private boolean existeImagen;
     private ArrayList<String> listaDePreguntas;
     private Iterator<String> iteradorPreguntas;
     private ArrayList<String> listaRespuestas;
     private ArrayList<String> listaRespuestasCorrectas;
+    
     /**
      * Contructor del objeto Pregunta que sera utilizado como auxiliar para 
      * separar las preguntas de un examen
@@ -28,6 +31,8 @@ public class Pregunta {
         tipoPregunta=null;
         pregunta=null;
         respuesta=null;
+        cadenaBase64=null;
+        existeImagen=false;
         listaDePreguntas=new ArrayList();
         iteradorPreguntas=listaDePreguntas.iterator();
         listaRespuestas=new ArrayList();
@@ -53,6 +58,21 @@ public class Pregunta {
      */
     public void setRespuesta(String respuesta){
         this.respuesta=respuesta;
+    }
+    /**
+     * Para establecer la cadena codificada de una imagen en la pregunta
+     * @param cadenaBase64 la cadena codificada en Base64
+     */
+    public void setCadenaBase64(String cadenaBase64){
+        this.cadenaBase64=cadenaBase64;
+    }
+    /**
+     * Para cambiar entre verdadero y falso dependiendo de si existe una imagen 
+     * en la pregunta
+     * @param existe verdadero si existe una imagen en la pregunta falso si no.
+     */
+    public void setExisteImagen(boolean existe){
+        existeImagen=existe;
     }
     /**
      * Para guardar los renglones leidos del archivo de una pregunta
@@ -109,6 +129,20 @@ public class Pregunta {
      */
     public String getRespuesta(){
         return respuesta;
+    }
+    /**
+     * Devuelve la cadena de la imagen codificada en base64
+     * @return cadena de la imagen cpodificada en base64
+     */
+    public String getCadenaBase4(){
+        return cadenaBase64;
+    }
+    /**
+     * Devuelve verdadero si la pregunta tiene una imagen, falso si no es así.
+     * @return verdadero si la pregunta contiene una imagen, falso si no
+     */
+    public boolean getExisteImagen(){
+        return existeImagen;
     }
     /**
      * Devuelve un renglon en la posicion deseada de la lista de preguntas

@@ -90,6 +90,10 @@ public class ExamenXML {
                                 + linea
                                 + "</text>\n"
                                 + "\t</questiontext>\n");
+                        //si la pregunta contiene una imagen
+                        if(P.getExisteImagen()==true){
+                            pw.write(P.getCadenaBase4());
+                        }
                         //si la pregunta contiene mas de una respuesta
                         int numeroRespuestasCorrectas;
                         numeroRespuestasCorrectas = P.getListaRespuestasCorrectas().size();

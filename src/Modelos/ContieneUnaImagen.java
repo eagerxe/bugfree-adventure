@@ -71,4 +71,12 @@ public class ContieneUnaImagen {
         }
         return renglon;
     }
+    public boolean contieneUnaImagen(String renglon){
+        if(renglon.contains("\\includegraphics")){
+            contieneImagen=true;
+        }else {
+            contieneImagen= false;
+        }
+        return contieneImagen;
+    }
 }

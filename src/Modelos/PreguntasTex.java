@@ -195,7 +195,14 @@ public class PreguntasTex {
                         
                         renglon=renglon.replaceAll("\t", "");
                         renglon = renglon.trim();
-                        renglon = CUI.contieneImagenes(renglon, direccionPadre);
+                        //checa si la pregunta tienen una imagen
+                        if(CUI.contieneUnaImagen(renglon)==true){
+                            String cadenabase64= CUI.contieneImagenes(renglon, direccionPadre);
+                            renglon="";
+                            P.setCadenaBase64(cadenabase64);
+                            P.setExisteImagen(true);
+                        }
+                        
                         renglonAuxiliar = renglonAuxiliar + " " + renglon;
                         renglonAuxiliar=renglonAuxiliar.trim();
                         P.setPregunta(renglonAuxiliar);
