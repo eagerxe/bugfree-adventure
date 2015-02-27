@@ -90,7 +90,8 @@ public class ExamenXML {
                                 + linea
                                 + "</text>\n"
                                 + "\t</questiontext>\n");
-                        //si la pregunta contiene una imagen
+                        //si la pregunta contiene una imagen agrega aqui 
+                        //la cadena de la misma 
                         if(P.getExisteImagen()==true){
                             pw.write(P.getCadenaBase4());
                         }

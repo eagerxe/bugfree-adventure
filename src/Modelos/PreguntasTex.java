@@ -179,6 +179,12 @@ public class PreguntasTex {
                     renglon = renglon.replace("\\question",""); 
                     renglon = renglon.replace("{", "");
                     renglon=renglon.replaceAll("\t", "");
+                    renglon = renglon.replace("[", "");
+                    renglon = renglon.replace("]", "");
+                    String patronPuntos = "\\d+(\\.\\d+)?";
+                    
+                    renglon =  renglon.replaceFirst(patronPuntos, "");
+                    
                     renglon = renglon.trim();
                     String renglonAuxiliar = renglon;
                     
@@ -191,12 +197,16 @@ public class PreguntasTex {
                     String patron="}";
                     
                     while(!renglon.matches(patron)){
-                        
-                        
-                        renglon=renglon.replaceAll("\t", "");
+                        String patronAlineacion1="(\\\\begin\\{.*\\})";
+                        String patronAlineacion2="(\\\\end\\{.*\\})";
+                        renglon = renglon.replaceFirst(patronAlineacion1,"");
+                        renglon = renglon.replaceFirst(patronAlineacion2,"");
+                        renglon = renglon.replaceAll("\t", "");
                         renglon = renglon.trim();
                         //checa si la pregunta tienen una imagen
                         if(CUI.contieneUnaImagen(renglon)==true){
+                            //Guarda la cadena de la imagen transformada en la 
+                            //pregunta
                             String cadenabase64= CUI.contieneImagenes(renglon, direccionPadre);
                             renglon="";
                             P.setCadenaBase64(cadenabase64);
@@ -223,10 +233,16 @@ public class PreguntasTex {
                     while(!(renglon.contains("\\end{choices}"))){
                         renglon=renglon.replaceAll("\t", "");
                         
+                        String patronCorrecto="([Cc]orrect[Cc]hoice)";
+                        Pattern patronCorrect = Pattern.compile("([Cc]orrect[Cc]hoice)");
+                        Matcher m = patronCorrect.matcher(renglon);
+                        
                         //si el renglon contiene la pregunta correcta la guarda en respuesta
-                        if(renglon.contains("orrect")){
-                            renglon=renglon.replace("\\CorrectChoice ","");
-                            renglon=renglon.replace("\\correctchoice ","");
+                        //if(renglon.contains("orrect")){
+                        if(m.find()){
+                            
+                            renglon=renglon.replaceAll(patronCorrecto,"");
+                            renglon=renglon.replace("\\", "");
                             renglon=renglon.trim();
                             
                             P.setRespuesta(renglon);
@@ -235,7 +251,8 @@ public class PreguntasTex {
                             
                         //si el renglon contiene una opcion incorrecta la guarda en respuestas    
                         }else if(renglon.contains("\\choice")){
-                            renglon=renglon.replace("\\choice ","");
+                            renglon=renglon.replace("\\choice","");
+                            renglon=renglon.trim();
                             //P.setRespuestas(renglon);
                             P.setRespuestaenLista(renglon);
                             System.out.println(renglon + " Opción");
@@ -255,9 +272,16 @@ public class PreguntasTex {
                         renglon=renglon.replaceAll("\t", "");
                         
                         //si el renglon contiene la pregunta correcta la guarda en respuesta
-                        if(renglon.contains("orrect")){
-                            renglon=renglon.replace("\\CorrectChoice ","");
-                            renglon=renglon.replace("\\correctchoice ","");
+                        String patronCorrecto="([Cc]orrect[Cc]hoice)";
+                        Pattern patronCorrect = Pattern.compile("([Cc]orrect[Cc]hoice)");
+                        Matcher m = patronCorrect.matcher(renglon);
+                        
+                        //si el renglon contiene la pregunta correcta la guarda en respuesta
+                        //if(renglon.contains("orrect")){
+                        if(m.find()){
+                            
+                            renglon=renglon.replaceAll(patronCorrecto,"");
+                            renglon=renglon.replace("\\", "");
                             renglon=renglon.trim();
                             
                             P.setRespuesta(renglon);
@@ -266,7 +290,8 @@ public class PreguntasTex {
                             
                         //si el renglon contiene una opcion incorrecta la guarda en respuestas    
                         }else if(renglon.contains("\\choice")){
-                            renglon=renglon.replace("\\choice ","");
+                            renglon=renglon.replace("\\choice","");
+                            renglon=renglon.trim();
                             //P.setRespuestas(renglon);
                             P.setRespuestaenLista(renglon);
                             System.out.println(renglon + " Opción");
@@ -289,14 +314,26 @@ public class PreguntasTex {
                             renglon=renglon.replaceAll("\t", "");
 
                             //si el renglon contiene la pregunta correcta la guarda en respuesta
-                            if(renglon.contains("orrect")){
-                                renglon=renglon.replace("\\CorrectChoice ","");
-                                renglon=renglon.replace("\\correctchoice ","");
-                                P.setRespuesta(renglon);
-                                System.out.println(renglon+ " Respuesta correcta");
-                            //si el renglon contiene una opcion incorrecta la guarda en respuestas     
-                            }else if(renglon.contains("\\choice")){
-                                renglon=renglon.replace("\\choice ","");
+                            String patronCorrecto="([Cc]orrect[Cc]hoice)";
+                        Pattern patronCorrect = Pattern.compile("([Cc]orrect[Cc]hoice)");
+                        Matcher m = patronCorrect.matcher(renglon);
+                        
+                        //si el renglon contiene la pregunta correcta la guarda en respuesta
+                        //if(renglon.contains("orrect")){
+                        if(m.find()){
+                            
+                            renglon=renglon.replaceAll(patronCorrecto,"");
+                            renglon=renglon.replace("\\", "");
+                            renglon=renglon.trim();
+                            
+                            P.setRespuesta(renglon);
+                            P.setRespuestasCorrectas(renglon);
+                            System.out.println(renglon+ " Respuesta correcta");
+                            
+                        //si el renglon contiene una opcion incorrecta la guarda en respuestas    
+                        }else if(renglon.contains("\\choice")){
+                                renglon=renglon.replace("\\choice","");
+                                renglon=renglon.trim();
                                 //P.setRespuestas(renglon);
                                 P.setRespuestaenLista(renglon);
                                 System.out.println(renglon + " Opción");    
@@ -318,14 +355,26 @@ public class PreguntasTex {
                             renglon=renglon.replaceAll("\t", "");
 
                             //si el renglon contiene la pregunta correcta la guarda en respuesta
-                            if(renglon.contains("orrect")){
-                                renglon=renglon.replace("\\CorrectChoice ","");
-                                renglon=renglon.replace("\\correctchoice ","");
-                                P.setRespuesta(renglon);
-                                System.out.println(renglon+ " Respuesta correcta");
-                            //si el renglon contiene una opcion incorrecta la guarda en respuestas     
-                            }else if(renglon.contains("\\choice")){
-                                renglon=renglon.replace("\\choice ","");
+                        String patronCorrecto="([Cc]orrect[Cc]hoice)";
+                        Pattern patronCorrect = Pattern.compile("([Cc]orrect[Cc]hoice)");
+                        Matcher m = patronCorrect.matcher(renglon);
+                        
+                        //si el renglon contiene la pregunta correcta la guarda en respuesta
+                        //if(renglon.contains("orrect")){
+                        if(m.find()){
+                            
+                            renglon=renglon.replaceAll(patronCorrecto,"");
+                            renglon=renglon.replace("\\", "");
+                            renglon=renglon.trim();
+                            
+                            P.setRespuesta(renglon);
+                            P.setRespuestasCorrectas(renglon);
+                            System.out.println(renglon+ " Respuesta correcta");
+                            
+                        //si el renglon contiene una opcion incorrecta la guarda en respuestas    
+                        }else if(renglon.contains("\\choice")){
+                                renglon=renglon.replace("\\choice","");
+                                renglon=renglon.trim();
                                 //P.setRespuestas(renglon);
                                 P.setRespuestaenLista(renglon);
                                 System.out.println(renglon + " Opción");    
@@ -345,18 +394,26 @@ public class PreguntasTex {
                             renglon=renglon.replaceAll("\t", "");
 
                             //si el renglon contiene la pregunta correcta la guarda en respuesta
-                            if(renglon.contains("orrect")){
-                                renglon=renglon.replace("\\CorrectChoice ","");
-                                renglon=renglon.replace("\\correctchoice ","");
+                            String patronCorrecto="([Cc]orrect[Cc]hoice)";
+                        Pattern patronCorrect = Pattern.compile("([Cc]orrect[Cc]hoice)");
+                        Matcher m = patronCorrect.matcher(renglon);
+                        
+                        //si el renglon contiene la pregunta correcta la guarda en respuesta
+                        //if(renglon.contains("orrect")){
+                        if(m.find()){
+                            
+                            renglon=renglon.replaceAll(patronCorrecto,"");
+                            renglon=renglon.replace("\\", "");
+                            renglon=renglon.trim();
+                            
+                            P.setRespuesta(renglon);
+                            P.setRespuestasCorrectas(renglon);
+                            System.out.println(renglon+ " Respuesta correcta");
+                            
+                        //si el renglon contiene una opcion incorrecta la guarda en respuestas    
+                        }else if(renglon.contains("\\choice")){
+                                renglon=renglon.replace("\\choice","");
                                 renglon=renglon.trim();
-
-                                P.setRespuesta(renglon);
-                                P.setRespuestasCorrectas(renglon);
-                                System.out.println(renglon+ " Respuesta correcta");
-
-                            //si el renglon contiene una opcion incorrecta la guarda en respuestas    
-                            }else if(renglon.contains("\\choice")){
-                                renglon=renglon.replace("\\choice ","");
                                 //P.setRespuestas(renglon);
                                 P.setRespuestaenLista(renglon);
                                 System.out.println(renglon + " Opción");
