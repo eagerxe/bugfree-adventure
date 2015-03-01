@@ -73,6 +73,7 @@ public class PreguntasXML {
                 }else if(linea.contains("<image>")){
                     linea=linea.replace("<image>","");
                     linea= linea.replace("</image>","");
+                    linea=linea.trim();
                     P.setNombreImagen(linea);
                     
                     //Se forma la cadena para LaTeX
@@ -88,6 +89,7 @@ public class PreguntasXML {
                     
                     linea=linea.trim();
                     linea=linea.replace("<image_base64>","");
+                    linea=linea.trim();
                     String cadenaBase64="";
                     
                     while(!linea.contains("</image_base64>")){
@@ -97,6 +99,7 @@ public class PreguntasXML {
                         linea=linea.trim();
                     }
                     linea=linea.replace("</image_base64>","");
+                    linea=linea.trim();
                     cadenaBase64=cadenaBase64+linea;
                     P.setCadenaBase64(cadenaBase64);
                     //Se convierte la cadena a una imagen y se guarda en la 
