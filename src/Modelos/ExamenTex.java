@@ -19,7 +19,9 @@ public class ExamenTex {
     
     
     public ExamenTex(){
-        
+        linea = null;
+        listaPreguntas = null;
+        lineasPregunta = null;
     }
     
     
@@ -33,6 +35,7 @@ public class ExamenTex {
             = new PrintWriter(new BufferedWriter(new FileWriter(direccionDestino)));
                 //cabecera del examen
                 pw.write("\\documentclass [addpoints,100pt]{exam}\n"
+                        + "\\usepackage{graphicx}\n"
                         + "\\begin{document}\n"
                         + "\t\\begin{center}\n"
                         + "\t\\fbox {\\fbox{\\parbox{5.5 in}{\\centering\n"
@@ -88,7 +91,7 @@ public class ExamenTex {
                 
         pw.close();
         }catch(IOException er){
-            System.out.println("Excepcion en los flujos generar examen "+er.getMessage());
+            System.out.println("Excepcion en los flujos al generar examen "+er.getMessage());
         }
         
       
@@ -132,8 +135,8 @@ public class ExamenTex {
                 Pregunta P = new Pregunta();
                 P=listaPreguntas.get(i);
                 if(P.getTipoPregunta().contains("multichoice")){
-                    pw.write("\t\\question\n");
-                    pw.write("\t"+ P.getPregunta() +"\n");
+                    pw.write("\t\\question{\n");
+                    pw.write("\t"+ P.getPregunta() +"\n\t}\n");
                     pw.write("\t\\vspace {0.1 in}\n");
                     pw.write("\t\\begin{choices}\n");
                     //Escribir la respuesta correcta aleatoriamente
@@ -181,8 +184,8 @@ public class ExamenTex {
                 //pregunta de tipo verdadero o falso    
                 }else if(P.getTipoPregunta().contains("truefalse")){
                     
-                    pw.write("\t\\question\n");
-                    pw.write("\t"+ P.getPregunta() +"\n");
+                    pw.write("\t\\question{\n");
+                    pw.write("\t"+ P.getPregunta() +"\n\t}\n");
                     pw.write("\t\\vspace {0.1 in}\n");
                     pw.write("\t\\begin{oneparcheckboxes}\n");
                     //respuesta verdadera o falsa
@@ -204,19 +207,19 @@ public class ExamenTex {
                 //pregunta de respuesta corta
                 }else if(P.getTipoPregunta().contains("shortanswer")){
                     
-                    pw.write("\t\\question\n");
-                    pw.write("\t"+ P.getPregunta() +"\n");
+                    pw.write("\t\\question{\n");
+                    pw.write("\t"+ P.getPregunta() +"\n\t}\n");
                     pw.write("\t\\answerline [" +P.getRespuesta()+ "]\n");
                 //pregunta tipo ensayo    
                 }else if(P.getTipoPregunta().contains("essay")){
-                    pw.write("\t\\question\n");
-                    pw.write("\t"+ P.getPregunta() +"\n");
+                    pw.write("\t\\question{\n");
+                    pw.write("\t"+ P.getPregunta() +"\n\t}\n");
                     pw.write("\t\\makeemptybox{2in}\n");
                     
                 //pregunta tipo numerica    
                 }else if(P.getTipoPregunta().contains("numerical")){
-                    pw.write("\t\\question\n");
-                    pw.write("\t"+ P.getPregunta() +"\n");
+                    pw.write("\t\\question{\n");
+                    pw.write("\t"+ P.getPregunta() +"\n\t}\n");
                     pw.write("\t\\answerline [" +P.getRespuesta()+ "]\n");
                 }
                 

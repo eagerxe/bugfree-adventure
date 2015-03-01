@@ -17,6 +17,7 @@ public class Pregunta {
     private String respuesta;
     private String cadenaBase64;
     private boolean existeImagen;
+    private String nombreImagen;
     private ArrayList<String> listaDePreguntas;
     private Iterator<String> iteradorPreguntas;
     private ArrayList<String> listaRespuestas;
@@ -33,6 +34,7 @@ public class Pregunta {
         respuesta=null;
         cadenaBase64=null;
         existeImagen=false;
+        nombreImagen=null;
         listaDePreguntas=new ArrayList();
         iteradorPreguntas=listaDePreguntas.iterator();
         listaRespuestas=new ArrayList();
@@ -73,6 +75,13 @@ public class Pregunta {
      */
     public void setExisteImagen(boolean existe){
         existeImagen=existe;
+    }
+    /**
+     * Para establecer el nombre de la imagen en la pregunta
+     * @param nombreImagen El nombre de la imagen
+     */
+    public void setNombreImagen(String nombreImagen){
+        this.nombreImagen=nombreImagen;
     }
     /**
      * Para guardar los renglones leidos del archivo de una pregunta
@@ -143,6 +152,13 @@ public class Pregunta {
      */
     public boolean getExisteImagen(){
         return existeImagen;
+    }
+    /**
+     * Obtiene el nombre de la imagen en la pregunta
+     * @return el nombre de la imagen en nombreImagen
+     */ 
+    public String getNombreImagen(){
+        return nombreImagen;
     }
     /**
      * Devuelve un renglon en la posicion deseada de la lista de preguntas

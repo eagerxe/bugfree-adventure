@@ -63,7 +63,7 @@ public class ContieneUnaImagen {
             } catch (IOException ex) {
                 Logger.getLogger(PreguntasTex.class.getName()).log(Level.SEVERE, null, ex);
             }
-            renglonaux = "\n<image>/"+ nombreImagen +"</image>\n";
+            renglonaux = "\n<image>"+ nombreImagen +"</image>\n";
             String cadenaBase64 = CB.imagenACadena(img, tipo);
             renglonaux = renglonaux + "<image_base64>"+ cadenaBase64 +"</image_base64>\n";
             System.out.println(renglonaux);

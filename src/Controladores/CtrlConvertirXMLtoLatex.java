@@ -17,13 +17,14 @@ public class CtrlConvertirXMLtoLatex {
      * @param direccionDestino la direccion donde se generara el examen LaTeX 
      */
     public CtrlConvertirXMLtoLatex(String direccionOrigen,String direccionDestino){
-        direccionDestino = direccionDestino + "/nuevoExamen.tex";
+        
+        String direccionDestinoExamenTex = direccionDestino + "/nuevoExamen.tex";
         ExamenTex ET = new ExamenTex();
         PreguntasXML PXML = new PreguntasXML();
         
-        ET.generarCabecera(direccionDestino);
-        ET.generarExamenTexXML(direccionDestino,PXML.separarPreguntasXML(direccionOrigen) );
-        ET.generarFinalExamen(direccionDestino);
+        ET.generarCabecera(direccionDestinoExamenTex);
+        ET.generarExamenTexXML(direccionDestinoExamenTex,PXML.separarPreguntasXML(direccionOrigen,direccionDestino) );
+        ET.generarFinalExamen(direccionDestinoExamenTex);
         
     }
     
