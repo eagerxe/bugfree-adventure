@@ -7,7 +7,7 @@ import java.util.List;
 
 
 /**
- *
+ * Clase para guardar los componentes de una pregunta
  * @author miguelhernandez
  */
 public class Pregunta {

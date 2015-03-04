@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- *
+ * Clase para guardar las preguntas de un examen
  * @author miguelhernandez
  */
 public class Examen {

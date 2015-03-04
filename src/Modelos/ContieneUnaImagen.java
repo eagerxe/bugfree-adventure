@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * Checa si el renglon contiene una imagen, de ser asi la convierte a cadena
  * @author miguelhernandez
  * 
  */
@@ -23,7 +23,7 @@ public class ContieneUnaImagen {
         tipo = "";
     }
     /**
-     *
+     * Si el renglon contiene una imagen la convierte a una cadena y la regresa
      * @param renglon el renglon que se verificará para saber si contiene la 
      * dirección de una imagen
      * @param direccionPadre La dirección de la carpeta donde se ubica la imagen
@@ -71,6 +71,11 @@ public class ContieneUnaImagen {
         }
         return renglon;
     }
+    /**
+     * Para saber si el renglon contiene una imagen
+     * @param renglon un renglon de la pregunta
+     * @return true si contiene una imagen false de lo contrario
+     */
     public boolean contieneUnaImagen(String renglon){
         if(renglon.contains("\\includegraphics")){
             contieneImagen=true;

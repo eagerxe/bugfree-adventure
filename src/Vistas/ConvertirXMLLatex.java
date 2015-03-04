@@ -12,7 +12,7 @@ import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
- *
+ * Vista Convertir examen XML a LaTeX
  * @author miguelhernandez
  */
 public class ConvertirXMLLatex extends javax.swing.JFrame {
@@ -150,14 +150,20 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Muestra una ventana para escoger el archivo
+     * @param evt Evento sobre el botón para escoger el archivo
+     */
     private void btnAgregarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArchivoActionPerformed
         JFileChooser escogerDireccion = new JFileChooser();
         escogerDireccion.showOpenDialog(this);
         String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
         txtDireccionOrigen.setText(direc);
     }//GEN-LAST:event_btnAgregarArchivoActionPerformed
-
+    /**
+     * Muestra una ventana para escoger el directorio destino
+     * @param evt Evento sobre el botón para escoger el destino
+     */
     private void btnDireccionDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDireccionDestinoActionPerformed
         JFileChooser escogerDireccion = new JFileChooser();
         escogerDireccion.setFileSelectionMode(1);
@@ -165,12 +171,18 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
         String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
         txtDireccionDestino.setText(direc);
     }//GEN-LAST:event_btnDireccionDestinoActionPerformed
-
+    /**
+     * Botón para cancelar y regresar a la vista Inicio
+     * @param evt Evento sobre el botón para regresar al inicio
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         CtrlInicio CI = new CtrlInicio(4);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
+    /**
+     * Botón para comenzar con la conversion del examen XML Moodle a LaTeX
+     * @param evt Evento sobre el boton para iniciar la conversión
+     */
     private void btnConvertirExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirExamenActionPerformed
         String direccionOrigen,direccionDestino;
         direccionOrigen=txtDireccionOrigen.getText();

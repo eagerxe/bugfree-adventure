@@ -4,7 +4,7 @@ import Modelos.ExamenTex;
 import Modelos.PreguntasXML;
 
 /**
- *
+ * Controlador para convertir un examen XML Moodle a LaTeX 
  * @author miguelhernandez
  */
 public class CtrlConvertirXMLtoLatex {

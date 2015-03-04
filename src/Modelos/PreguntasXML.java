@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * Separa las preguntas de un examen en XML Moodle
  * @author miguelhernandez
  */
 public class PreguntasXML {

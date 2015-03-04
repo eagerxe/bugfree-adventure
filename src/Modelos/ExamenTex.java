@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- *
+ * Clase para generar el examen en LaTeX
  * @author miguelhernandez
  */
 public class ExamenTex {

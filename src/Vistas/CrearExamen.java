@@ -6,7 +6,7 @@ import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
- *
+ * Vista Crear Examen
  * @author miguelhernandez
  */
 public class CrearExamen extends javax.swing.JFrame {
@@ -74,6 +74,7 @@ public class CrearExamen extends javax.swing.JFrame {
         txtNumeroPreguntas = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         lblCrearExamen.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         lblCrearExamen.setText("Crear examen LaTeX");
@@ -167,12 +168,6 @@ public class CrearExamen extends javax.swing.JFrame {
         });
 
         lblNumeroPreguntas.setText("Numero de preguntas:");
-
-        txtNumeroPreguntas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroPreguntasActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -321,7 +316,7 @@ public class CrearExamen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCrearExamenActionPerformed
     /**
-     * 
+     * Boton para cancelar y regresar a la vista Inicio
      * @param evt Evento sobre el botón para cancelar y volver al inicio
      */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -330,6 +325,7 @@ public class CrearExamen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
     /**
      * Muestra una ventana para escoger el archivo
+     * @param evt Evento sobre el boton para escoger el archivo
      */
     private void btnAgregarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArchivoActionPerformed
         JFileChooser escogerDireccion = new JFileChooser();
@@ -343,7 +339,10 @@ public class CrearExamen extends javax.swing.JFrame {
         btnEliminar.setVisible(true);
         
     }//GEN-LAST:event_btnAgregarArchivoActionPerformed
-
+    /**
+     * Muestra una ventana para escoger el archivo
+     * @param evt Evento sobre el boton para escoger el archivo
+     */
     private void btnAgregarArchivo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArchivo2ActionPerformed
         JFileChooser escogerDireccion = new JFileChooser();
         escogerDireccion.showOpenDialog(this);
@@ -357,7 +356,10 @@ public class CrearExamen extends javax.swing.JFrame {
         btnEliminar.setVisible(false);
         
     }//GEN-LAST:event_btnAgregarArchivo2ActionPerformed
-
+    /**
+     * Muestra una ventana para escoger el archivo
+     * @param evt Evento sobre el boton para escoger el archivo
+     */
     private void btnAgregarArchivo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArchivo3ActionPerformed
         JFileChooser escogerDireccion = new JFileChooser();
         escogerDireccion.showOpenDialog(this);
@@ -368,7 +370,10 @@ public class CrearExamen extends javax.swing.JFrame {
         btnEliminar2.setVisible(false);
         btnEliminar3.setVisible(true);
     }//GEN-LAST:event_btnAgregarArchivo3ActionPerformed
-
+    /**
+     * Muestra una ventana para escoger el directorio destino
+     * @param evt Evento sobre el boton para escoger el destino
+     */
     private void btnAgregarDireccionDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDireccionDestinoActionPerformed
         JFileChooser escogerDireccion = new JFileChooser();
         escogerDireccion.setFileSelectionMode(1);
@@ -377,7 +382,10 @@ public class CrearExamen extends javax.swing.JFrame {
         txtDireccionDestino.setText(direc);
         
     }//GEN-LAST:event_btnAgregarDireccionDestinoActionPerformed
-
+    /**
+     * Boton para eliminar la direccion del archivo
+     * @param evt Evento sobre el boton para eliminar el archivo
+     */
     private void btnEliminar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar3ActionPerformed
         
         txtDireccion3.setText(null);
@@ -389,7 +397,10 @@ public class CrearExamen extends javax.swing.JFrame {
         
         numeroDeArchivos-=1;
     }//GEN-LAST:event_btnEliminar3ActionPerformed
-
+    /**
+     * Boton para eliminar la direccion del archivo
+     * @param evt Evento sobre el boton para eliminar el archivo
+     */
     private void btnEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar2ActionPerformed
         
         txtDireccion2.setText(null);
@@ -403,7 +414,10 @@ public class CrearExamen extends javax.swing.JFrame {
         
         numeroDeArchivos-=1;
     }//GEN-LAST:event_btnEliminar2ActionPerformed
-
+    /**
+     * Boton para eliminar la direccion del archivo
+     * @param evt Evento sobre el boton para eliminar el archivo
+     */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         txtDireccion.setText(null);
         btnEliminar.setVisible(false);
@@ -413,12 +427,10 @@ public class CrearExamen extends javax.swing.JFrame {
         
         numeroDeArchivos-=1;
     }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void txtNumeroPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroPreguntasActionPerformed
-      
-       
-    }//GEN-LAST:event_txtNumeroPreguntasActionPerformed
-
+    /**
+     * ComboBox para elegir el numero de preguntas
+     * @param evt Evento sobre el ComboBox para elegir el numero de preguntas
+     */
     private void comboNumeroPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNumeroPreguntasActionPerformed
         if (comboNumeroPreguntas.getSelectedItem().toString().contains("Ingresar un número")){
             lblNumeroPreguntas.setVisible(true);

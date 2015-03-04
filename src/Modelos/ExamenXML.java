@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
- *
+ * Clase para generar el examen en XML Moodle 
  * @author miguelhernandez
  */
 public class ExamenXML {

@@ -36,13 +36,5 @@ public class CtrlInicio {
             CExamen CExa = new CExamen ();
             CExa.setVisible(true);
         }
- 
-        
     }
-    
-    
-    
-    
-    
-    
 }

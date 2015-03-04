@@ -13,9 +13,11 @@ public class CtrlCrearExamen {
     
     
     /**
-     * Se encarga de crear el examen usando los modelos necesarios
-     * @param direccion La ruta al archivo LaTeX proporcionada
-     * 
+     * Se encarga de crear el examen a partir de otro examen en LaTeX
+     * @param direccion Direccion del examen origen
+     * @param direccionDestino Direccion donde se localizará el nuevo examen
+     * @param aleatorio Indica si se desea orden aleatorio de las preguntas
+     * @param numeroPreguntas El numero de preguntas del examen final
      */
     public CtrlCrearExamen(String direccion,String direccionDestino,Boolean aleatorio,String numeroPreguntas){
         //direccionDestino = "/Users/miguelhernandez/Desktop/nuevoExamen.tex";
@@ -66,7 +68,14 @@ public class CtrlCrearExamen {
         
     }
     
-    
+    /**
+     * Se encarga de crear el examen a partir de otro examen en LaTeX
+     * @param direccion Direccion del examen origen 1
+     * @param direccion2 Direccion del examen origen 2
+     * @param direccionDestino Direccion donde se localizará el nuevo examen
+     * @param aleatorio Indica si se desea orden aleatorio de las preguntas
+     * @param numeroPreguntas El numero de preguntas del examen final
+     */
     public CtrlCrearExamen(String direccion,String direccion2,String direccionDestino,Boolean aleatorio,String numeroPreguntas){
         //direccionDestino = "/Users/miguelhernandez/Desktop/nuevoExamen.tex";
         direccionDestino = direccionDestino + "/nuevoExamen.tex";
@@ -125,7 +134,15 @@ public class CtrlCrearExamen {
         
         
     }
-    
+    /**
+     * Se encarga de crear el examen a partir de otro examen en LaTeX
+     * @param direccion Direccion del examen origen 1
+     * @param direccion2 Direccion del examen origen 2
+     * @param direccion3 Direccion del examen origen 3
+     * @param direccionDestino Direccion donde se localizará el nuevo examen
+     * @param aleatorio Indica si se desea orden aleatorio de las preguntas
+     * @param numeroPreguntas El numero de preguntas del examen final
+     */
     public CtrlCrearExamen(String direccion,String direccion2,String direccion3,String direccionDestino,Boolean aleatorio,String numeroPreguntas){
         //direccionDestino = "/Users/miguelhernandez/Desktop/nuevoExamen.tex";
         direccionDestino = direccionDestino + "/nuevoExamen.tex";

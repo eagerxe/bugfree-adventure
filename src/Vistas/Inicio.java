@@ -3,7 +3,7 @@ package Vistas;
 import Controladores.CtrlInicio;
 
 /**
- *
+ * Vista Inicio
  * @author miguelhernandez
  */
 public class Inicio extends javax.swing.JFrame {
@@ -121,12 +121,18 @@ public class Inicio extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_btnLatextoXMLActionPerformed
-
+    /**
+     * Botón para seleccionar la conversion de un examen en XML Moodle a LaTeX
+     * @param evt 
+     */
     private void btnXMLtoLatexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXMLtoLatexActionPerformed
         CtrlInicio CI = new CtrlInicio(3);    
         dispose();
     }//GEN-LAST:event_btnXMLtoLatexActionPerformed
-
+    /**
+     * Boton para seleccionar la creacion de un examen en LaTeX/XML
+     * @param evt 
+     */
     private void btnCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCEActionPerformed
         CtrlInicio CI = new CtrlInicio(5);
         dispose();

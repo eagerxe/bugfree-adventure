@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 
 
 /**
- *
+ * Clase para separar las preguntas,y componentes de un examen TeX
  * @author miguelhernandez
  */
 public class PreguntasTex {

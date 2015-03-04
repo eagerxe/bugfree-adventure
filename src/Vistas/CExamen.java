@@ -71,6 +71,8 @@ public class CExamen extends javax.swing.JFrame {
         comboBtruefalse = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
         lblCExamen.setText("Crear un examen");
 

@@ -13,9 +13,11 @@ public class CtrlConvertirLatextoXML {
     
     
     /**
-     * Se encarga de convertir un examen en Latex a XML Moodle
+     * Controlador para convertir un examen LaTeX a Moodle XMl 
      * @param direccionOrigen la direccion del examen en LaTeX
      * @param direccionDestino la direccion donde se generara el examen XML
+     * @param direccionPadre la direccion del directorio donde se encuentra el 
+     * examen origen 
      */
     public CtrlConvertirLatextoXML(String direccionOrigen,String direccionDestino,String direccionPadre){
         direccionDestino = direccionDestino + "/nuevoExamen.xml";
@@ -34,7 +36,6 @@ public class CtrlConvertirLatextoXML {
         EXML.generarCabecera(direccionDestino);
         EXML.generarExamenXML(direccionDestino, examen);
         EXML.generarFinalExamen(direccionDestino);
-        
         
     }
     
