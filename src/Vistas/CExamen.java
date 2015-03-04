@@ -16,7 +16,7 @@ import javax.swing.ListModel;
 
 
 /**
- *
+ * Vista CExamen
  * @author miguelhernandez
  */
 public class CExamen extends javax.swing.JFrame {
@@ -299,7 +299,10 @@ public class CExamen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * ComboBox para el tipo de pregunta
+     * @param evt 
+     */
     private void comboBTipoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBTipoPActionPerformed
         if (comboBTipoP.getSelectedItem().toString().contains("truefalse")){
             lblRespuestaCorrecta.setVisible(false);
@@ -383,29 +386,47 @@ public class CExamen extends javax.swing.JFrame {
             comboBtruefalse.setVisible(false);
         }
     }//GEN-LAST:event_comboBTipoPActionPerformed
+    
     DefaultListModel dlm = new DefaultListModel();
+    /**
+     *  Botón para agregar una respuesta a la lista de respuestas
+     * @param evt 
+     */
     private void btnAgregarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRespuestaActionPerformed
 
         dlm.addElement(txtRespuestaC.getText());
         listaRespuestas.setModel(dlm);
         txtRespuestaC.setText(null);
     }//GEN-LAST:event_btnAgregarRespuestaActionPerformed
-
+    /**
+     * Botón para eliminar una respuesta de la lista
+     * @param evt 
+     */
     private void btnEliminarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRespuestaActionPerformed
         boolean removeElement = dlm.removeElement(listaRespuestas.getSelectedValue());
         
     }//GEN-LAST:event_btnEliminarRespuestaActionPerformed
     DefaultListModel dlm2 = new DefaultListModel();
+    /**
+     * Boton para agregar un distractor a la lista de distractores
+     * @param evt 
+     */
     private void btnAgregarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDActionPerformed
         dlm2.addElement(txtDistractor.getText());
         listaDistractores.setModel(dlm2);
         txtDistractor.setText(null);
     }//GEN-LAST:event_btnAgregarDActionPerformed
-
+    /**
+     * Botón para eliminar un elemento de la lista de distractores
+     * @param evt 
+     */
     private void btnEliminarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDActionPerformed
         boolean removeElement = dlm2.removeElement(listaDistractores.getSelectedValue());
     }//GEN-LAST:event_btnEliminarDActionPerformed
-
+    /**
+     * Botón para agregar la pregunta al examen
+     * @param evt 
+     */
     private void btnAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPActionPerformed
         
         String tipo =(String) comboBTipoP.getSelectedItem();
@@ -500,10 +521,13 @@ public class CExamen extends javax.swing.JFrame {
     private void btnGenerarExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarExamenActionPerformed
         String tipoExamen = (String)comboBTipoExamen.getSelectedItem();
         
-        CCE.generarExamenTex(tipoExamen, this.direccionDestino);
+        CCE.generarExamen(tipoExamen, this.direccionDestino);
         showMessageDialog(null, "Examen creado");
     }//GEN-LAST:event_btnGenerarExamenActionPerformed
-
+    /**
+     * Botón para agregar la direccion destino del examen
+     * @param evt 
+     */
     private void btnAgregarDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDireccionActionPerformed
         JFileChooser escogerDireccion = new JFileChooser();
         escogerDireccion.setFileSelectionMode(1);

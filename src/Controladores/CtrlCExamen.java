@@ -9,7 +9,7 @@ import Modelos.PreguntasXML;
 import java.util.ArrayList;
 
 /**
- *
+ * Para crear un examen LaTeX o XMLMoodle
  * @author miguelhernandez
  */
 public class CtrlCExamen {
@@ -19,6 +19,13 @@ public class CtrlCExamen {
     public CtrlCExamen(){
         examen = new Examen();
     }
+    /**
+     * Agrega las preguntas al examen 
+     * @param tipo el tipo de pregunta
+     * @param pregunta La oracion de la pregunta
+     * @param respuestas la respuesta o respuestas correctas
+     * @param distractores los distractores de la pregunta 
+     */
     public void agregarPreguntaAExamen(String tipo,String pregunta,ArrayList<String> respuestas,ArrayList<String> distractores){
         P =  new Pregunta();
         P.setTipo(tipo);
@@ -30,9 +37,13 @@ public class CtrlCExamen {
         examen.setPreguntaALista(P);
         
     }
-    
-    public void generarExamenTex(String tipo,String direccionDestino){
-        if (tipo.contains("XML")){
+    /**
+     * Genera los examenes en LaTeX o Moodle XML
+     * @param tipoExamen Tipo de examen XML o LaTeX
+     * @param direccionDestino La dirección destino del examen
+     */
+    public void generarExamen(String tipoExamen,String direccionDestino){
+        if (tipoExamen.contains("XML")){
             direccionDestino = direccionDestino + "/nuevoExamen.xml";
             //Se crea una instancia de la clase ExamenXML para generar el examen
             ExamenXML EXML = new ExamenXML();
@@ -41,7 +52,7 @@ public class CtrlCExamen {
             EXML.generarExamenXML(direccionDestino, examen);
             EXML.generarFinalExamen(direccionDestino);
             
-        }else if (tipo.contains("LaTeX")){
+        }else if (tipoExamen.contains("LaTeX")){
             direccionDestino = direccionDestino + "/nuevoExamen.tex";
             
             ExamenTex ET = new ExamenTex();
