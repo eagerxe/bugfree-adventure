@@ -60,7 +60,6 @@ public class CtrlCExamen {
             ET.generarCabecera(direccionDestino);
             ET.generarExamenTexXML(direccionDestino,examen);
             ET.generarFinalExamen(direccionDestino);
-            
         }
         
     }

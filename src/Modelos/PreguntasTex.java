@@ -449,16 +449,16 @@ public class PreguntasTex {
                     }
                     System.out.println(renglon + " Respuesta corta/numerica");
                 //Respuestas tipo ensayo     
-                }else if(renglon.contains("\\makeemptybox{1in}")){
+                }else if(renglon.contains("\\makeemptybox{")){
                     P.setTipo("essay");
                     System.out.println(" ensayo caja");
-                }else if(renglon.contains("\\vspace*{\\stretch{1}}")){
+                }else if(renglon.contains("\\vspace*{\\stretch{")){
                     P.setTipo("essay");
                     System.out.println(" ensayo blanco");
-                }else if(renglon.contains("\\fillwithlines{1in}")){
+                }else if(renglon.contains("\\fillwithlines{")){
                     P.setTipo("essay");
                     System.out.println(" ensayo lineas");
-                }else if(renglon.contains("\\fillwithdottedlines{1in}")){
+                }else if(renglon.contains("\\fillwithdottedlines{")){
                     P.setTipo("essay");
                     System.out.println(" ensayo lineas punteadas");
                 }
