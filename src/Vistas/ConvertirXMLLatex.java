@@ -8,6 +8,7 @@ package Vistas;
 import Controladores.CtrlConvertirLatextoXML;
 import Controladores.CtrlConvertirXMLtoLatex;
 import Controladores.CtrlInicio;
+import java.io.File;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -16,7 +17,8 @@ import static javax.swing.JOptionPane.showMessageDialog;
  * @author miguelhernandez
  */
 public class ConvertirXMLLatex extends javax.swing.JFrame {
-
+    private String direccionPadre;
+    JFileChooser fc;
     /**
      * Creates new form ConvertirXMLLatex
      */
@@ -38,41 +40,27 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
         lblDireccionExamen = new javax.swing.JLabel();
         txtDireccionOrigen = new javax.swing.JTextField();
         btnAgregarArchivo = new javax.swing.JButton();
-        lblAgregueDestino = new javax.swing.JLabel();
-        lblDireccionDestino = new javax.swing.JLabel();
-        txtDireccionDestino = new javax.swing.JTextField();
-        btnDireccionDestino = new javax.swing.JButton();
         btnConvertirExamen = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
 
         lblConvertirExamen.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         lblConvertirExamen.setText("Convertir un examen de XML Moodle a LaTeX");
 
-        lblAgregueDireccion.setText("Agregue la doreccion donde se encuentra localizado el examen.");
+        lblAgregueDireccion.setText("Agregue el examen Moodle XML");
 
-        lblDireccionExamen.setText("Dirección del examen XML:");
+        lblDireccionExamen.setText("Examen Moodle XML:");
 
-        btnAgregarArchivo.setText("Agregar archivo");
+        btnAgregarArchivo.setText("Agregar examen");
         btnAgregarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarArchivoActionPerformed(evt);
             }
         });
 
-        lblAgregueDestino.setText("Agregue la direccion de destino del nuevo examen.");
-
-        lblDireccionDestino.setText("Direccion destino:");
-
-        btnDireccionDestino.setText("Agregar directorio");
-        btnDireccionDestino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDireccionDestinoActionPerformed(evt);
-            }
-        });
-
-        btnConvertirExamen.setText("Convertir examen");
+        btnConvertirExamen.setText("Guardar examen");
         btnConvertirExamen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConvertirExamenActionPerformed(evt);
@@ -93,33 +81,22 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(320, 320, 320)
+                        .addComponent(lblConvertirExamen))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(320, 320, 320)
-                                .addComponent(lblConvertirExamen))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(388, 388, 388)
-                                .addComponent(lblAgregueDireccion))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(222, 222, 222)
+                                .addComponent(lblDireccionExamen)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblDireccionExamen)
-                                            .addComponent(lblDireccionDestino))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-                                            .addComponent(txtDireccionDestino)))
-                                    .addComponent(btnConvertirExamen, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAgregarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDireccionDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(390, 390, 390)
-                        .addComponent(lblAgregueDestino)))
+                                    .addComponent(lblAgregueDireccion)
+                                    .addComponent(txtDireccionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnConvertirExamen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAgregarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(254, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,21 +104,14 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(lblConvertirExamen)
-                .addGap(37, 37, 37)
+                .addGap(70, 70, 70)
                 .addComponent(lblAgregueDireccion)
-                .addGap(85, 85, 85)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDireccionExamen)
                     .addComponent(txtDireccionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregarArchivo))
-                .addGap(65, 65, 65)
-                .addComponent(lblAgregueDestino)
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDireccionDestino)
-                    .addComponent(txtDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDireccionDestino))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConvertirExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -158,20 +128,30 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
         JFileChooser escogerDireccion = new JFileChooser();
         escogerDireccion.showOpenDialog(this);
         String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
-        txtDireccionOrigen.setText(direc);
+        direccionPadre = escogerDireccion.getSelectedFile().getParent();
+        if (direc.contains(".xml")) {
+            //checar si existe el archivo 
+            File archivo = new File(direc);
+            if (archivo.exists()) {
+                txtDireccionOrigen.setText(direc);
+                txtDireccionOrigen.setEditable(false);
+            } else {
+                showMessageDialog(null, "El examen no existe en la ruta especificada");
+            }
+
+        } else {
+            showMessageDialog(null, "Tiene que elegir un examen Moodle XML");
+        }
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_btnAgregarArchivoActionPerformed
-    /**
-     * Muestra una ventana para escoger el directorio destino
-     * @param evt Evento sobre el botón para escoger el destino
-     */
-    private void btnDireccionDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDireccionDestinoActionPerformed
-        JFileChooser escogerDireccion = new JFileChooser();
-        escogerDireccion.setFileSelectionMode(1);
-        escogerDireccion.showOpenDialog(this);
-        String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
-        txtDireccionDestino.setText(direc);
-    }//GEN-LAST:event_btnDireccionDestinoActionPerformed
-    /**
+
+   /**
      * Botón para cancelar y regresar a la vista Inicio
      * @param evt Evento sobre el botón para regresar al inicio
      */
@@ -186,9 +166,45 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
     private void btnConvertirExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirExamenActionPerformed
         String direccionOrigen,direccionDestino;
         direccionOrigen=txtDireccionOrigen.getText();
-        direccionDestino=txtDireccionDestino.getText();
-        CtrlConvertirXMLtoLatex CXTL = new CtrlConvertirXMLtoLatex(direccionOrigen,direccionDestino);
-        showMessageDialog(null, "Examen creado");
+        fc = new JFileChooser();
+        
+        if (!direccionOrigen.isEmpty()) {
+
+            int returnVal = fc.showSaveDialog(this);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                
+                File file = fc.getSelectedFile();
+                if (file.getName().contains(".tex")) {
+                    if (file.exists()) {
+                        showMessageDialog(null, "Ese nombre de examen ya existe en la ruta especificada");
+                    } else {
+
+                        direccionDestino = file.getAbsolutePath();
+                        
+                        
+                        
+                        CtrlConvertirXMLtoLatex CXTL = new CtrlConvertirXMLtoLatex(direccionOrigen,direccionDestino,direccionPadre);
+                        
+                    }
+
+                } else if (file.getName().isEmpty()) {
+                    showMessageDialog(null, "Debe escribir el nombre del examen LaTeX");
+                } else {
+                    showMessageDialog(null, "La terminación del nombre del examen debe ser .tex");
+                }
+
+                
+            } else {
+                //log.append("Cancelando");
+            }
+        } else {
+            showMessageDialog(null, "Necesita agregar un examen Moodle XML");
+
+        }
+        
+        //direccionDestino=txtDireccionDestino.getText();
+        
+        //showMessageDialog(null, "Examen creado");
     }//GEN-LAST:event_btnConvertirExamenActionPerformed
 
     /**
@@ -230,13 +246,9 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarArchivo;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConvertirExamen;
-    private javax.swing.JButton btnDireccionDestino;
-    private javax.swing.JLabel lblAgregueDestino;
     private javax.swing.JLabel lblAgregueDireccion;
     private javax.swing.JLabel lblConvertirExamen;
-    private javax.swing.JLabel lblDireccionDestino;
     private javax.swing.JLabel lblDireccionExamen;
-    private javax.swing.JTextField txtDireccionDestino;
     private javax.swing.JTextField txtDireccionOrigen;
     // End of variables declaration//GEN-END:variables
 }

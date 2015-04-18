@@ -3,6 +3,9 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1280, 720]"/>
+    </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1280, 720]"/>
     </Property>
@@ -27,119 +30,89 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="589" max="-2" attributes="0"/>
-              <Component id="lblCExamen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="156" max="32767" attributes="0"/>
+              <EmptySpace pref="247" max="32767" attributes="0"/>
+              <Component id="lblRespuestaCorrecta" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="948" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnAgregarP" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnEliminarP" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="259" max="-2" attributes="0"/>
+                          <Component id="lblTipoP" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="488" max="-2" attributes="0"/>
-                          <Component id="btnGenerarExamen" min="-2" pref="217" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblTipoExamen" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPregunta" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbltruefalse" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Component id="lblDistractor" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblCExamen" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPregunta" alignment="0" min="-2" pref="542" max="-2" attributes="0"/>
+                  <Component id="comboBtruefalse" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="txtRespuestaC" min="-2" pref="542" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnAgregarRespuesta" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="542" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnEliminarRespuesta" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="txtDistractor" min="-2" pref="542" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnAgregarD" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="comboBTipoP" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboBTipoExamen" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btnAgregarP" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnEliminarP" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane2" min="-2" pref="542" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnAgregarAExamen" min="-2" pref="307" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnGenerarExamen" min="-2" pref="217" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnEliminarD" min="-2" max="-2" attributes="0"/>
                           <Component id="btnCancelar" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblTipoP" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                          <Component id="comboBTipoP" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="444" max="-2" attributes="0"/>
-                          <Component id="btnAgregarDireccion" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jScrollPane2" alignment="1" min="-2" pref="542" max="-2" attributes="0"/>
-                                      <Component id="txtDistractor" min="-2" pref="542" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="btnAgregarD" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnEliminarD" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="lbltruefalse" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
-                                      <Component id="comboBtruefalse" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblRespuestaCorrecta" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblDistractor" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtRespuestaC" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane1" alignment="0" min="-2" pref="542" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                      <Component id="btnAgregarRespuesta" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnEliminarRespuesta" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lblPregunta" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtPregunta" min="-2" pref="542" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="lblTipoExamen" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblDireccionDestino" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="comboBTipoExamen" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtDireccionDestino" alignment="0" min="-2" pref="542" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="0" pref="190" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="lblCExamen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblTipoExamen" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboBTipoExamen" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAgregarDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="55" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblTipoP" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboBTipoP" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -155,34 +128,41 @@
                   <Component id="comboBtruefalse" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblRespuestaCorrecta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtRespuestaC" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAgregarRespuesta" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnEliminarRespuesta" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="lblRespuestaCorrecta" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtRespuestaC" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnAgregarRespuesta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="94" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDistractor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDistractor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAgregarD" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane2" min="-2" pref="91" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnAgregarP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnEliminarP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="btnEliminarD" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnGenerarExamen" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="btnCancelar" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="btnAgregarAExamen" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="94" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDistractor" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDistractor" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAgregarD" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnEliminarD" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="91" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnAgregarP" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnEliminarP" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnGenerarExamen" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                  <Component id="btnCancelar" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                  <Component id="btnEliminarRespuesta" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
           </Group>
@@ -192,7 +172,10 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblCExamen">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Crear un examen"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="24" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Crear un examen LaTeX &#xf3; Moodle XML"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTipoP">
@@ -255,7 +238,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnGenerarExamen">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Generar examen"/>
+        <Property name="text" type="java.lang.String" value="Guardar examen "/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarExamenActionPerformed"/>
@@ -271,7 +254,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAgregarP">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar pregunta a examen"/>
+        <Property name="text" type="java.lang.String" value="Guardar pregunta para a&#xf1;adir a examen"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarPActionPerformed"/>
@@ -343,25 +326,10 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
             <StringItem index="0" value="LaTeX"/>
-            <StringItem index="1" value="XML"/>
+            <StringItem index="1" value="Moodle XML"/>
           </StringArray>
         </Property>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblDireccionDestino">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Direccion destino:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtDireccionDestino">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAgregarDireccion">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Examinar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarDireccionActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbltruefalse">
       <Properties>
@@ -377,6 +345,14 @@
           </StringArray>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAgregarAExamen">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar preguntas guardadas a examen LaTeX"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarAExamenActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

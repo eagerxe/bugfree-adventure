@@ -56,7 +56,7 @@ public class Pregunta {
     }
     /**
      * Para establecer la respuesta correcta a la pregunta
-     * @param respuesta 
+     * @param respuesta La respuesta correcta
      */
     public void setRespuesta(String respuesta){
         this.respuesta=respuesta;
@@ -191,7 +191,7 @@ public class Pregunta {
     }
     /**
      * Devuelve el iterador asociado a la listaDePreguntas
-     * @return 
+     * @return el iteradorPreguntas
      */
     public Iterator getIteradorPreguntas(){
         return iteradorPreguntas;

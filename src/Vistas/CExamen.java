@@ -6,30 +6,34 @@
 package Vistas;
 
 import Controladores.CtrlCExamen;
+import Controladores.CtrlConvertirLatextoXML;
 import Controladores.CtrlInicio;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.ListModel;
 
-
-
 /**
  * Vista CExamen
+ *
  * @author miguelhernandez
  */
 public class CExamen extends javax.swing.JFrame {
+
     private CtrlCExamen CCE = new CtrlCExamen();
-    String direccionDestino;
+    private String direccionDestino;
+    private JFileChooser fc;
+
     /**
      * Creates new form CE
      */
     public CExamen() {
         initComponents();
         lbltruefalse.setVisible(false);
-        comboBtruefalse.setVisible(false);    
-        
+        comboBtruefalse.setVisible(false);
+
     }
 
     /**
@@ -64,17 +68,17 @@ public class CExamen extends javax.swing.JFrame {
         listaDistractores = new javax.swing.JList();
         lblTipoExamen = new javax.swing.JLabel();
         comboBTipoExamen = new javax.swing.JComboBox();
-        lblDireccionDestino = new javax.swing.JLabel();
-        txtDireccionDestino = new javax.swing.JTextField();
-        btnAgregarDireccion = new javax.swing.JButton();
         lbltruefalse = new javax.swing.JLabel();
         comboBtruefalse = new javax.swing.JComboBox();
+        btnAgregarAExamen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
-        lblCExamen.setText("Crear un examen");
+        lblCExamen.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        lblCExamen.setText("Crear un examen LaTeX ó Moodle XML");
 
         lblTipoP.setText("Tipo de pregunta:");
 
@@ -105,7 +109,7 @@ public class CExamen extends javax.swing.JFrame {
             }
         });
 
-        btnGenerarExamen.setText("Generar examen");
+        btnGenerarExamen.setText("Guardar examen ");
         btnGenerarExamen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarExamenActionPerformed(evt);
@@ -119,7 +123,7 @@ public class CExamen extends javax.swing.JFrame {
             }
         });
 
-        btnAgregarP.setText("Agregar pregunta a examen");
+        btnAgregarP.setText("Guardar pregunta para añadir a examen");
         btnAgregarP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarPActionPerformed(evt);
@@ -153,111 +157,87 @@ public class CExamen extends javax.swing.JFrame {
 
         lblTipoExamen.setText("Tipo de examen:");
 
-        comboBTipoExamen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LaTeX", "XML" }));
-
-        lblDireccionDestino.setText("Direccion destino:");
-
-        btnAgregarDireccion.setText("Examinar");
-        btnAgregarDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarDireccionActionPerformed(evt);
-            }
-        });
+        comboBTipoExamen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LaTeX", "Moodle XML" }));
 
         lbltruefalse.setText("Respuesta correcta:");
 
         comboBtruefalse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Verdadero", "Falso" }));
 
+        btnAgregarAExamen.setText("Agregar preguntas guardadas a examen LaTeX");
+        btnAgregarAExamen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarAExamenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(589, 589, 589)
-                .addComponent(lblCExamen)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(156, Short.MAX_VALUE)
+                .addContainerGap(247, Short.MAX_VALUE)
+                .addComponent(lblRespuestaCorrecta)
+                .addGap(948, 948, 948))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnAgregarP)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnEliminarP)
-                            .addGap(246, 246, 246))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(488, 488, 488)
-                            .addComponent(btnGenerarExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblTipoP)
-                            .addGap(52, 52, 52)
-                            .addComponent(comboBTipoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(444, 444, 444)
-                            .addComponent(btnAgregarDireccion)
-                            .addGap(282, 282, 282)))
+                            .addGap(259, 259, 259)
+                            .addComponent(lblTipoP))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblTipoExamen, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblPregunta, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lbltruefalse, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addComponent(lblDistractor, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCExamen)
+                    .addComponent(txtPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBtruefalse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtRespuestaC, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregarRespuesta))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminarRespuesta))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtDistractor, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregarD))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(comboBTipoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboBTipoExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAgregarP)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminarP))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAgregarAExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGenerarExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtDistractor, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(35, 35, 35)
-                                    .addComponent(btnAgregarD)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnEliminarD))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbltruefalse)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(comboBtruefalse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblRespuestaCorrecta)
-                                            .addComponent(lblDistractor))
-                                        .addGap(40, 40, 40)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtRespuestaC)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(35, 35, 35)
-                                        .addComponent(btnAgregarRespuesta)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnEliminarRespuesta))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblPregunta)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(lblTipoExamen)
-                                            .addGap(59, 59, 59))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblDireccionDestino)
-                                            .addGap(48, 48, 48)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(comboBTipoExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap())))
+                            .addComponent(btnEliminarD)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(29, 29, 29)
                 .addComponent(lblCExamen)
-                .addGap(14, 14, 14)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoExamen)
                     .addComponent(comboBTipoExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDireccionDestino)
-                    .addComponent(txtDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarDireccion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoP)
                     .addComponent(comboBTipoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -270,30 +250,34 @@ public class CExamen extends javax.swing.JFrame {
                     .addComponent(lbltruefalse)
                     .addComponent(comboBtruefalse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminarRespuesta, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblRespuestaCorrecta)
-                        .addComponent(txtRespuestaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAgregarRespuesta)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDistractor)
-                    .addComponent(txtDistractor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarD)
-                    .addComponent(btnEliminarD))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                    .addComponent(lblRespuestaCorrecta)
+                    .addComponent(txtRespuestaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregarRespuesta))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregarP, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEliminarP))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGenerarExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDistractor)
+                            .addComponent(txtDistractor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarD))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnAgregarP)
+                                    .addComponent(btnEliminarP)))
+                            .addComponent(btnEliminarD))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGenerarExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarAExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnEliminarRespuesta))
                 .addGap(45, 45, 45))
         );
 
@@ -301,115 +285,134 @@ public class CExamen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * ComboBox para el tipo de pregunta
-     * @param evt 
+     *
+     * @param evt
      */
     private void comboBTipoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBTipoPActionPerformed
-        if (comboBTipoP.getSelectedItem().toString().contains("truefalse")){
+        if (comboBTipoP.getSelectedItem().toString().contains("truefalse")) {
             lblRespuestaCorrecta.setVisible(false);
             txtRespuestaC.setVisible(false);
             btnAgregarRespuesta.setVisible(false);
             btnEliminarRespuesta.setVisible(false);
             jScrollPane1.setVisible(false);
-            
+
             lblDistractor.setVisible(false);
             txtDistractor.setVisible(false);
             btnAgregarD.setVisible(false);
             btnEliminarD.setVisible(false);
             jScrollPane2.setVisible(false);
-            
-            
+
             lbltruefalse.setVisible(true);
             comboBtruefalse.setVisible(true);
-            
-        } else if (comboBTipoP.getSelectedItem().toString().contains("multichoice")){
+
+        } else if (comboBTipoP.getSelectedItem().toString().contains("multichoice")) {
             lblRespuestaCorrecta.setVisible(true);
             txtRespuestaC.setVisible(true);
             btnAgregarRespuesta.setVisible(true);
             btnEliminarRespuesta.setVisible(true);
             jScrollPane1.setVisible(true);
-            
+
             lblDistractor.setVisible(true);
             txtDistractor.setVisible(true);
             btnAgregarD.setVisible(true);
             btnEliminarD.setVisible(true);
             jScrollPane2.setVisible(true);
-            
-            
+
             lbltruefalse.setVisible(false);
             comboBtruefalse.setVisible(false);
-        }else if (comboBTipoP.getSelectedItem().toString().contains("shortanswer")){
+        } else if (comboBTipoP.getSelectedItem().toString().contains("shortanswer")) {
             lbltruefalse.setVisible(false);
             comboBtruefalse.setVisible(false);
-            
+
             lblRespuestaCorrecta.setVisible(true);
             txtRespuestaC.setVisible(true);
             btnAgregarRespuesta.setVisible(true);
             btnEliminarRespuesta.setVisible(true);
             jScrollPane1.setVisible(true);
-            
+
             lblDistractor.setVisible(false);
             txtDistractor.setVisible(false);
             btnAgregarD.setVisible(false);
             btnEliminarD.setVisible(false);
             jScrollPane2.setVisible(false);
-            
-        }else if (comboBTipoP.getSelectedItem().toString().contains("numerical")){
+
+        } else if (comboBTipoP.getSelectedItem().toString().contains("numerical")) {
             lbltruefalse.setVisible(false);
             comboBtruefalse.setVisible(false);
-            
+
             lblRespuestaCorrecta.setVisible(true);
             txtRespuestaC.setVisible(true);
             btnAgregarRespuesta.setVisible(true);
             btnEliminarRespuesta.setVisible(true);
             jScrollPane1.setVisible(true);
-            
+
             lblDistractor.setVisible(false);
             txtDistractor.setVisible(false);
             btnAgregarD.setVisible(false);
             btnEliminarD.setVisible(false);
             jScrollPane2.setVisible(false);
-            
-        }else if (comboBTipoP.getSelectedItem().toString().contains("essay")){
+
+        } else if (comboBTipoP.getSelectedItem().toString().contains("essay")) {
             lblRespuestaCorrecta.setVisible(false);
             txtRespuestaC.setVisible(false);
             btnAgregarRespuesta.setVisible(false);
             btnEliminarRespuesta.setVisible(false);
             jScrollPane1.setVisible(false);
-            
+
             lblDistractor.setVisible(false);
             txtDistractor.setVisible(false);
             btnAgregarD.setVisible(false);
             btnEliminarD.setVisible(false);
             jScrollPane2.setVisible(false);
-            
+
             lbltruefalse.setVisible(false);
             comboBtruefalse.setVisible(false);
         }
     }//GEN-LAST:event_comboBTipoPActionPerformed
-    
+
     DefaultListModel dlm = new DefaultListModel();
+
     /**
-     *  Botón para agregar una respuesta a la lista de respuestas
-     * @param evt 
+     * Botón para agregar una respuesta a la lista de respuestas
+     *
+     * @param evt
      */
     private void btnAgregarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRespuestaActionPerformed
+        String checarNumero = txtRespuestaC.getText();
+        String tipo = (String) comboBTipoP.getSelectedItem();
+        if (tipo.contains("numerical")) {
+            if (esNumero(checarNumero)) {
+                dlm.addElement(txtRespuestaC.getText());
+                listaRespuestas.setModel(dlm);
+                txtRespuestaC.setText(null);
+                
+            } else {
+                showMessageDialog(null, "La respuesta debe ser numérica");
+            }
 
-        dlm.addElement(txtRespuestaC.getText());
-        listaRespuestas.setModel(dlm);
-        txtRespuestaC.setText(null);
+        }else{
+            dlm.addElement(txtRespuestaC.getText());
+            listaRespuestas.setModel(dlm);
+            txtRespuestaC.setText(null);
+        }
+
+        
     }//GEN-LAST:event_btnAgregarRespuestaActionPerformed
     /**
      * Botón para eliminar una respuesta de la lista
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnEliminarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRespuestaActionPerformed
         boolean removeElement = dlm.removeElement(listaRespuestas.getSelectedValue());
-        
+
     }//GEN-LAST:event_btnEliminarRespuestaActionPerformed
     DefaultListModel dlm2 = new DefaultListModel();
+
     /**
      * Boton para agregar un distractor a la lista de distractores
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnAgregarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDActionPerformed
         dlm2.addElement(txtDistractor.getText());
@@ -418,68 +421,64 @@ public class CExamen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarDActionPerformed
     /**
      * Botón para eliminar un elemento de la lista de distractores
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnEliminarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDActionPerformed
         boolean removeElement = dlm2.removeElement(listaDistractores.getSelectedValue());
     }//GEN-LAST:event_btnEliminarDActionPerformed
     /**
      * Botón para agregar la pregunta al examen
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPActionPerformed
-        
-        String tipo =(String) comboBTipoP.getSelectedItem();
-        if (tipo.contains("truefalse")){
+        String tipo = (String) comboBTipoP.getSelectedItem();
+        if (tipo.contains("truefalse")) {
             String respuesta = comboBtruefalse.getSelectedItem().toString();
             dlm.addElement(respuesta);
             listaRespuestas.setModel(dlm);
-            
-            
+
             dlm2.addElement("Falso");
             listaDistractores.setModel(dlm2);
-            
-            
-        }else if (tipo.contains("shortanswer")){
+
+        } else if (tipo.contains("shortanswer")) {
             dlm2.addElement("No se usa");
             listaDistractores.setModel(dlm2);
-            
-        }else if (tipo.contains("numerical")){
+
+        } else if (tipo.contains("numerical")) {
             dlm2.addElement("No se usa");
             listaDistractores.setModel(dlm2);
-            
-        }else if (tipo.contains("essay")){
+
+        } else if (tipo.contains("essay")) {
             dlm.addElement("No se usa");
             listaRespuestas.setModel(dlm);
-            
-            
-            
+
             dlm2.addElement("No se usa");
             listaDistractores.setModel(dlm2);
-            
+
         }
-        
-        
         String pregunta = txtPregunta.getText();
-        
+
         int numeroRespuestas = listaRespuestas.getModel().getSize();
-        ArrayList<String> respuestas = new ArrayList ();
+        ArrayList<String> respuestas = new ArrayList();
         String respuesta = null;
-        for(int i=0;i<numeroRespuestas;i++){
-            respuesta =(String) listaRespuestas.getModel().getElementAt(i);
+        for (int i = 0; i < numeroRespuestas; i++) {
+            respuesta = (String) listaRespuestas.getModel().getElementAt(i);
             boolean add = respuestas.add(respuesta);
+
         }
-        
+
         int numeroDistractores = listaDistractores.getModel().getSize();
         ArrayList<String> distractores = new ArrayList();
-        String distractor= null;
-        for (int j=0;j<numeroDistractores;j++){
-            distractor=(String) listaDistractores.getModel().getElementAt(j);
+        String distractor = null;
+        for (int j = 0; j < numeroDistractores; j++) {
+            distractor = (String) listaDistractores.getModel().getElementAt(j);
             boolean add = distractores.add(distractor);
         }
-        
+
         CCE.agregarPreguntaAExamen(tipo, pregunta, respuestas, distractores);
-        
+
         //limpio los campos
         txtPregunta.setText(null);
         txtRespuestaC.setText(null);
@@ -489,12 +488,13 @@ public class CExamen extends javax.swing.JFrame {
         dlm2.clear();
         listaDistractores.setModel(dlm2);
         comboBTipoP.setSelectedIndex(0);
-        
-        
+
+
     }//GEN-LAST:event_btnAgregarPActionPerformed
     /**
      * Limpia todos los campos
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPActionPerformed
         txtPregunta.setText(null);
@@ -508,7 +508,8 @@ public class CExamen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarPActionPerformed
     /**
      * Regresa a la pantalla de inicio
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         CtrlInicio CI = new CtrlInicio(4);
@@ -516,26 +517,114 @@ public class CExamen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
     /**
      * Generar el examen
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnGenerarExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarExamenActionPerformed
-        String tipoExamen = (String)comboBTipoExamen.getSelectedItem();
-        
-        CCE.generarExamen(tipoExamen, this.direccionDestino);
-        showMessageDialog(null, "Examen creado");
+        fc = new JFileChooser();
+        String tipoExamen = (String) comboBTipoExamen.getSelectedItem();
+
+        int returnVal = fc.showSaveDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+            File file = fc.getSelectedFile();
+
+            if (tipoExamen.contains("Moodle")) {
+                if (file.getName().contains(".xml")) {
+                    if (file.exists()) {
+                        showMessageDialog(null, "Ese nombre de examen ya existe en la ruta especificada");
+                    } else {
+
+                        direccionDestino = file.getAbsolutePath();
+
+                        CCE.generarExamen(tipoExamen, this.direccionDestino);
+
+                    }
+
+                } else if (file.getName().isEmpty()) {
+                    showMessageDialog(null, "Debe escribir el nombre del examen Moodle XML");
+                } else {
+                    showMessageDialog(null, "La terminación del nombre del examen debe ser .xml");
+                }
+
+            } else {
+
+                if (file.getName().contains(".tex")) {
+                    if (file.exists()) {
+                        showMessageDialog(null, "Ese nombre de examen ya existe en la ruta especificada");
+                    } else {
+
+                        direccionDestino = file.getAbsolutePath();
+                        CCE.generarExamen(tipoExamen, this.direccionDestino);
+
+                    }
+
+                } else if (file.getName().isEmpty()) {
+                    showMessageDialog(null, "Debe escribir el nombre del examen LaTeX");
+                } else {
+                    showMessageDialog(null, "La terminación del nombre del examen debe ser .tex");
+                }
+
+            }
+            //hasta aquí
+
+        } else {
+            //log.append("Cancelando");
+        }
+
+        //showMessageDialog(null, "Examen creado y guardado en la dirección especificada");
     }//GEN-LAST:event_btnGenerarExamenActionPerformed
+
     /**
-     * Botón para agregar la direccion destino del examen
-     * @param evt 
+     * Botón para agregar las preguntas al examen en LaTeX seleccionado
+     *
+     * @param evt
      */
-    private void btnAgregarDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDireccionActionPerformed
+    private void btnAgregarAExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAExamenActionPerformed
+        comboBTipoExamen.setSelectedIndex(0);
+        comboBTipoExamen.setEditable(false);
+        btnGenerarExamen.setVisible(false);
+        String tipoExamen = (String) comboBTipoExamen.getSelectedItem();
+
         JFileChooser escogerDireccion = new JFileChooser();
-        escogerDireccion.setFileSelectionMode(1);
         escogerDireccion.showOpenDialog(this);
         String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
-        txtDireccionDestino.setText(direc);
-        this.direccionDestino = direc;
-    }//GEN-LAST:event_btnAgregarDireccionActionPerformed
+        if (direc.contains(".tex")) {
+            //checar si existe el archivo 
+            File archivo = new File(direc);
+            if (archivo.exists()) {
+                CCE.agregarExamen(this.direccionDestino);
+            } else {
+                showMessageDialog(null, "El examen no existe en la ruta especificada");
+            }
+
+        } else {
+            showMessageDialog(null, "Tiene que elegir un examen LaTeX");
+        }
+
+        //showMessageDialog(null, "Pregunta(s) agregada(s) en el examen LaTeX");
+    }//GEN-LAST:event_btnAgregarAExamenActionPerformed
+
+    public static boolean esNumero(String cadena) {
+        if (cadena.isEmpty()) {
+            return false;
+        }
+        int i = 0;
+        if (cadena.charAt(0) == '-') {
+            if (cadena.length() > 1) {
+                i++;
+            } else {
+                return false;
+            }
+        }
+
+        for (; i < cadena.length(); i++) {
+            if (!Character.isDigit(cadena.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * @param args the command line arguments
@@ -574,8 +663,8 @@ public class CExamen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarAExamen;
     private javax.swing.JButton btnAgregarD;
-    private javax.swing.JButton btnAgregarDireccion;
     private javax.swing.JButton btnAgregarP;
     private javax.swing.JButton btnAgregarRespuesta;
     private javax.swing.JButton btnCancelar;
@@ -589,7 +678,6 @@ public class CExamen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCExamen;
-    private javax.swing.JLabel lblDireccionDestino;
     private javax.swing.JLabel lblDistractor;
     private javax.swing.JLabel lblPregunta;
     private javax.swing.JLabel lblRespuestaCorrecta;
@@ -598,7 +686,6 @@ public class CExamen extends javax.swing.JFrame {
     private javax.swing.JLabel lbltruefalse;
     private javax.swing.JList listaDistractores;
     private javax.swing.JList listaRespuestas;
-    private javax.swing.JTextField txtDireccionDestino;
     private javax.swing.JTextField txtDistractor;
     private javax.swing.JTextField txtPregunta;
     private javax.swing.JTextField txtRespuestaC;

@@ -3,6 +3,7 @@ package Controladores;
 import Modelos.Examen;
 import Modelos.ExamenXML;
 import Modelos.PreguntasTex;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -20,7 +21,7 @@ public class CtrlConvertirLatextoXML {
      * examen origen 
      */
     public CtrlConvertirLatextoXML(String direccionOrigen,String direccionDestino,String direccionPadre){
-        direccionDestino = direccionDestino + "/nuevoExamen.xml";
+        
         
         //Crea una instancia de PreguntasTex para separar las preguntas 
         PreguntasTex PT = new PreguntasTex();
@@ -36,6 +37,8 @@ public class CtrlConvertirLatextoXML {
         EXML.generarCabecera(direccionDestino);
         EXML.generarExamenXML(direccionDestino, examen);
         EXML.generarFinalExamen(direccionDestino);
+        showMessageDialog(null, "Examen creado y guardado");
+        //CtrlInicio CI = new CtrlInicio(4);
         
     }
     

@@ -34,30 +34,31 @@ public class Inicio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblInicio.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        lblInicio.setText("Inicio");
+        lblInicio.setText("LaTeX2MoodleXML");
 
-        btnCrearExamen.setText("Crear examen en LaTeX");
+        btnCrearExamen.setText("Mezclar exámenes LaTeX");
+        btnCrearExamen.setActionCommand("Mezclar examenes LaTeX");
         btnCrearExamen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearExamenActionPerformed(evt);
             }
         });
 
-        btnLatextoXML.setText("Convertir examen de LaTeX a XML Moodle");
+        btnLatextoXML.setText("Convertir examen de LaTeX a Moodle XML");
         btnLatextoXML.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLatextoXMLActionPerformed(evt);
             }
         });
 
-        btnXMLtoLatex.setText("Convertir examen de XML Moodle a LaTeX");
+        btnXMLtoLatex.setText("Convertir examen de Moodle XML a LaTeX");
         btnXMLtoLatex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXMLtoLatexActionPerformed(evt);
             }
         });
 
-        btnCE.setText("Crear examen");
+        btnCE.setText("Crear examen LaTeX ó Moodle XML");
         btnCE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCEActionPerformed(evt);
@@ -72,22 +73,22 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap(531, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblInicio)
-                        .addGap(579, 579, 579))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnXMLtoLatex, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLatextoXML, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCE, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(466, 466, 466))))
+                        .addGap(466, 466, 466))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblInicio)
+                        .addGap(499, 499, 499))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(55, 55, 55)
                 .addComponent(lblInicio)
-                .addGap(49, 49, 49)
+                .addGap(48, 48, 48)
                 .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(btnLatextoXML, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -7,6 +7,7 @@ import Modelos.Pregunta;
 import Modelos.PreguntasTex;
 import Modelos.PreguntasXML;
 import java.util.ArrayList;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  * Para crear un examen LaTeX o XMLMoodle
@@ -44,24 +45,37 @@ public class CtrlCExamen {
      */
     public void generarExamen(String tipoExamen,String direccionDestino){
         if (tipoExamen.contains("XML")){
-            direccionDestino = direccionDestino + "/nuevoExamen.xml";
+            
             //Se crea una instancia de la clase ExamenXML para generar el examen
             ExamenXML EXML = new ExamenXML();
 
             EXML.generarCabecera(direccionDestino);
             EXML.generarExamenXML(direccionDestino, examen);
             EXML.generarFinalExamen(direccionDestino);
-            
+            showMessageDialog(null, "Examen guardado en la ruta especificada");
         }else if (tipoExamen.contains("LaTeX")){
-            direccionDestino = direccionDestino + "/nuevoExamen.tex";
+            
             
             ExamenTex ET = new ExamenTex();
             
             ET.generarCabecera(direccionDestino);
             ET.generarExamenTexXML(direccionDestino,examen);
             ET.generarFinalExamen(direccionDestino);
+            showMessageDialog(null, "Examen guardado en la ruta especificada");
         }
         
+    }
+    /**
+     * Para agregar las preguntas al examen LaTeX
+     * @param direccionDestino la direccion del examen LaTeX al cual le serán 
+     * agregadas las preguntas
+     */
+    public void agregarExamen(String direccionDestino) {
+            ExamenTex ET = new ExamenTex();
+            ET.borrarFinalExamen(direccionDestino);
+            ET.generarExamenTexXML(direccionDestino, examen);
+            ET.generarFinalExamen(direccionDestino);
+            showMessageDialog(null, "Pregunta(s) agregada(s) en el examen LaTeX");
     }
     
 }

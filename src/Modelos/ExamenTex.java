@@ -1,11 +1,17 @@
 package Modelos;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase para generar el examen en LaTeX
@@ -180,7 +186,7 @@ public class ExamenTex {
                         
                     }
                     pw.write("\t\\end{choices}\n");
-                    pw.write("\t\\answerline\n");
+                    //pw.write("\t\\answerline\n");
                 //pregunta de tipo verdadero o falso    
                 }else if(P.getTipoPregunta().contains("truefalse")){
                     
@@ -230,6 +236,44 @@ public class ExamenTex {
         }catch(IOException er){
             System.out.println("Excepcion en los flujos para generar el examen "+er.getMessage());
         }    
+    }
+
+    /**
+     * Elimina el final de un examen LaTeX para agregar mas preguntas
+     * @param direccionDestino la direccion del examen LaTeX
+     */
+    public void borrarFinalExamen(String direccionDestino) {
+        
+        // Se abre el fichero para lectura y escritura.
+        RandomAccessFile fichero;
+        long filePointer = 0;
+        try {
+            fichero = new RandomAccessFile (direccionDestino, "rw");
+            
+            while((linea=fichero.readLine())!=null){
+                
+                if (linea.contains("\\end{questions}")){
+                    filePointer = fichero.getFilePointer();
+                    filePointer-=16;
+                    System.out.println(filePointer);
+                    
+                }
+               
+            }
+            fichero.seek(filePointer);
+            fichero.writeBytes("                                             ");
+            fichero.seek(filePointer);
+            fichero.setLength(filePointer);
+            
+            fichero.close();
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ExamenTex.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ExamenTex.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
     }
     
 }

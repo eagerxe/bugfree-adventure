@@ -2,34 +2,40 @@ package Vistas;
 
 import Controladores.CtrlCrearExamen;
 import Controladores.CtrlInicio;
+import java.awt.BorderLayout;
+import java.awt.Insets;
+import java.io.File;
+import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  * Vista Crear Examen
+ *
  * @author miguelhernandez
  */
 public class CrearExamen extends javax.swing.JFrame {
-    
-    private int numeroDeArchivos = 0;
-    
+
+    DefaultListModel lista;
+    JFileChooser fc;
+    JTextArea log;
+    String nombreExamenTex = null;
+
     /**
      * Crea la nueva forma CrearExamen
      */
     public CrearExamen() {
         initComponents();
+        lista = new DefaultListModel();
+        jList1.setModel(lista);
         //Cambia el modelo del ComboBox default
-        comboNumeroPreguntas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10","15","20","Ingresar un número","Todas"}));
-        
-        lblDireccion2.setVisible(false);
-        lblDireccion3.setVisible(false);
-        txtDireccion2.setVisible(false);
-        txtDireccion3.setVisible(false);
-        btnAgregarArchivo2.setVisible(false);
-        btnAgregarArchivo3.setVisible(false);
-        btnEliminar.setVisible(false);
-        btnEliminar2.setVisible(false);
-        btnEliminar3.setVisible(false);
+        comboNumeroPreguntas.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"5", "10", "15", "20", "Ingresar un número", "Todas"}));
         lblNumeroPreguntas.setVisible(false);
         txtNumeroPreguntas.setVisible(false);
         lblOrdenAleatorio.setVisible(false);
@@ -48,38 +54,27 @@ public class CrearExamen extends javax.swing.JFrame {
         lblCrearExamen = new javax.swing.JLabel();
         btnCrearExamen = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        lblDireccion = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
-        btnAgregarArchivo = new javax.swing.JButton();
         lblMensaje = new javax.swing.JLabel();
-        lblDireccion2 = new javax.swing.JLabel();
-        txtDireccion2 = new javax.swing.JTextField();
-        btnAgregarArchivo2 = new javax.swing.JButton();
-        lblDireccion3 = new javax.swing.JLabel();
-        txtDireccion3 = new javax.swing.JTextField();
-        btnAgregarArchivo3 = new javax.swing.JButton();
-        lblDireccionDestino = new javax.swing.JLabel();
-        txtDireccionDestino = new javax.swing.JTextField();
-        btnAgregarDireccionDestino = new javax.swing.JButton();
         lblOrdenAleatorio = new javax.swing.JLabel();
         lblNumeroDePreguntas = new javax.swing.JLabel();
         cBoxOrdenAleatorio = new javax.swing.JCheckBox();
-        lblAgregarDireccionDestino = new javax.swing.JLabel();
         comboNumeroPreguntas = new javax.swing.JComboBox();
         lblEscojaOpciones = new javax.swing.JLabel();
-        btnEliminar2 = new javax.swing.JButton();
-        btnEliminar3 = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         lblNumeroPreguntas = new javax.swing.JLabel();
         txtNumeroPreguntas = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        btnAgregarExamenLatex = new javax.swing.JButton();
+        btnEliminarExamenLista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
         lblCrearExamen.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        lblCrearExamen.setText("Crear examen LaTeX");
+        lblCrearExamen.setText("Mezclar exámenes LaTeX");
 
-        btnCrearExamen.setText("Crear examen");
+        btnCrearExamen.setText("Guardar examen");
         btnCrearExamen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearExamenActionPerformed(evt);
@@ -93,49 +88,11 @@ public class CrearExamen extends javax.swing.JFrame {
             }
         });
 
-        lblDireccion.setText("Direccion del examen LaTeX:");
-
-        btnAgregarArchivo.setText("Agregar archivo");
-        btnAgregarArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarArchivoActionPerformed(evt);
-            }
-        });
-
-        lblMensaje.setText("Agregue las direcciones donde se encuentra localizado o localizados los examenes.");
-
-        lblDireccion2.setText("Direccion del examen LaTeX:");
-
-        btnAgregarArchivo2.setText("Agregar archivo");
-        btnAgregarArchivo2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarArchivo2ActionPerformed(evt);
-            }
-        });
-
-        lblDireccion3.setText("Direccion del examen LaTeX:");
-
-        btnAgregarArchivo3.setText("Agregar archivo");
-        btnAgregarArchivo3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarArchivo3ActionPerformed(evt);
-            }
-        });
-
-        lblDireccionDestino.setText("Direccion destino:");
-
-        btnAgregarDireccionDestino.setText("Agregar direccion");
-        btnAgregarDireccionDestino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarDireccionDestinoActionPerformed(evt);
-            }
-        });
+        lblMensaje.setText("Agregue los exámenes que desea mezclar");
 
         lblOrdenAleatorio.setText("Orden aleatorio de las preguntas:");
 
-        lblNumeroDePreguntas.setText("Numero de preguntas de de cada examen:");
-
-        lblAgregarDireccionDestino.setText("Agregue la direccion destino.");
+        lblNumeroDePreguntas.setText("Número de preguntas de de cada examen:");
 
         comboNumeroPreguntas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboNumeroPreguntas.addActionListener(new java.awt.event.ActionListener() {
@@ -144,126 +101,82 @@ public class CrearExamen extends javax.swing.JFrame {
             }
         });
 
-        lblEscojaOpciones.setText("Escoja las opciones.");
+        lblEscojaOpciones.setText("Opciones");
 
-        btnEliminar2.setText("Eliminar");
-        btnEliminar2.addActionListener(new java.awt.event.ActionListener() {
+        lblNumeroPreguntas.setText("Número de preguntas:");
+
+        jScrollPane1.setViewportView(jList1);
+
+        btnAgregarExamenLatex.setText("Agregar examen");
+        btnAgregarExamenLatex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminar2ActionPerformed(evt);
+                btnAgregarExamenLatexActionPerformed(evt);
             }
         });
 
-        btnEliminar3.setText("Eliminar");
-        btnEliminar3.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarExamenLista.setText("Eliminar examen");
+        btnEliminarExamenLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminar3ActionPerformed(evt);
+                btnEliminarExamenListaActionPerformed(evt);
             }
         });
-
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
-        lblNumeroPreguntas.setText("Numero de preguntas:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblMensaje)
-                .addGap(429, 429, 429))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblCrearExamen)
-                .addGap(533, 533, 533))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(486, 486, 486)
+                .addContainerGap(478, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEscojaOpciones)
-                    .addComponent(lblAgregarDireccionDestino))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(234, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblDireccion3, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblDireccion2, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblDireccionDestino))
-                    .addComponent(lblNumeroDePreguntas)
-                    .addComponent(lblOrdenAleatorio)
-                    .addComponent(lblNumeroPreguntas))
-                .addGap(153, 153, 153)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblEscojaOpciones)
+                        .addGap(373, 373, 373))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtDireccion2, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDireccion3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDireccionDestino, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblNumeroPreguntas)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(cBoxOrdenAleatorio)
+                                                .addComponent(txtNumeroPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(comboNumeroPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblNumeroDePreguntas)
+                                        .addComponent(lblOrdenAleatorio)
+                                        .addComponent(lblMensaje)))
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCrearExamen)
+                                .addGap(94, 94, 94)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAgregarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAgregarArchivo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAgregarArchivo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAgregarDireccionDestino))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEliminar2)
-                            .addComponent(btnEliminar3)
-                            .addComponent(btnEliminar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cBoxOrdenAleatorio)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtNumeroPreguntas, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(comboNumeroPreguntas, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                            .addComponent(btnAgregarExamenLatex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminarExamenLista, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(284, 284, 284))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(lblCrearExamen)
-                .addGap(41, 41, 41)
+                .addGap(33, 33, 33)
                 .addComponent(lblMensaje)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarArchivo)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDireccion)
-                    .addComponent(btnEliminar))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDireccion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarArchivo2)
-                    .addComponent(lblDireccion2)
-                    .addComponent(btnEliminar2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDireccion3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarArchivo3)
-                    .addComponent(lblDireccion3)
-                    .addComponent(btnEliminar3))
-                .addGap(60, 60, 60)
-                .addComponent(lblAgregarDireccionDestino)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDireccionDestino)
-                    .addComponent(txtDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarDireccionDestino))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAgregarExamenLatex)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminarExamenLista))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblEscojaOpciones)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblNumeroDePreguntas)
                     .addComponent(comboNumeroPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -274,182 +187,186 @@ public class CrearExamen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumeroPreguntas)
                     .addComponent(txtNumeroPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+                    .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
     /**
-     * Crea una instancia del controlador de CrearExamen al cual pasa las direcciones
+     * Crea una instancia del controlador de CrearExamen al cual pasa las
+     * direcciones
+     *
      * @param evt Evento sobre el botón para crear el examen
      */
     private void btnCrearExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearExamenActionPerformed
-        
+        //Crear el log
+        log = new JTextArea(5, 20);
+        log.setMargin(new Insets(5, 5, 5, 5));
+        log.setEditable(false);
+        JScrollPane logScrollPane = new JScrollPane(log);
+        add(logScrollPane, BorderLayout.CENTER);
+
         CtrlCrearExamen CCE;
-        String direccionOrigen=txtDireccion.getText();
-        String direccionOrigen2=txtDireccion2.getText();
-        String direccionOrigen3=txtDireccion3.getText();
-        String direccionDestino=txtDireccionDestino.getText();
-        String numeroP=(String)comboNumeroPreguntas.getSelectedItem();
-        Boolean aleatorio=cBoxOrdenAleatorio.isSelected();
-        
-        if(txtNumeroPreguntas.isVisible()){
-            numeroP =txtNumeroPreguntas.getText();
+        String direccionDestino = null;
+
+        fc = new JFileChooser();
+
+        //Opciones
+        String numeroP = (String) comboNumeroPreguntas.getSelectedItem();
+        if (numeroP.contains("Ingresar")) {
+            numeroP = txtNumeroPreguntas.getText();
         }
+        Boolean aleatorio = cBoxOrdenAleatorio.isSelected();
         
-        //verifica el numero de archivos seleccionados
-        if (numeroDeArchivos==1){
-            CCE = new CtrlCrearExamen(direccionOrigen,direccionDestino,aleatorio,numeroP );
-        }else if(numeroDeArchivos==2){
-            CCE = new CtrlCrearExamen(direccionOrigen,direccionOrigen2,direccionDestino,aleatorio, numeroP);
-        }else if(numeroDeArchivos==3){
-            CCE = new CtrlCrearExamen(direccionOrigen,direccionOrigen2,direccionOrigen3,direccionDestino,aleatorio, numeroP);
+        //Obtener direcciones del jlist1
+        System.out.println(jList1.getModel());
+
+        ArrayList<String> direccionesOrigen = new ArrayList<>();
+
+        int numeroElementos = jList1.getModel().getSize();
+        for (int i = 0; i < numeroElementos; i++) {
+            direccionesOrigen.add(i, (String) jList1.getModel().getElementAt(i));
+            System.out.println(direccionesOrigen.get(i));
         }
-        showMessageDialog(null, "Examen creado");
-       
-        
+        //direccionesOrigen = (ArrayList<String>) jList1.getModel();
+        if (numeroElementos > 0) {
+
+            int returnVal = fc.showSaveDialog(this);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                
+                File file = fc.getSelectedFile();
+                if (file.getName().contains(".tex")) {
+                    if (file.exists()) {
+                        showMessageDialog(null, "Ese nombre de examen ya existe en la ruta especificada");
+                    } else {
+
+                        direccionDestino = file.getAbsolutePath();
+                        log.append("Guardando: " + file.getName());
+                        
+
+                        CCE = new CtrlCrearExamen(direccionesOrigen, direccionDestino, aleatorio, numeroP);
+                    }
+
+                } else if (file.getName().isEmpty()) {
+                    showMessageDialog(null, "Debe escribir el nombre del examen LaTeX");
+                } else {
+                    showMessageDialog(null, "La terminación del nombre del examen debe ser .tex");
+                }
+
+                
+            } else {
+                log.append("Cancelando");
+            }
+        } else {
+            showMessageDialog(null, "Necesita agregar al menos un examen LaTeX");
+
+        }
+        //checar si el examen fue creado
+        //dispose();
     }//GEN-LAST:event_btnCrearExamenActionPerformed
     /**
      * Boton para cancelar y regresar a la vista Inicio
+     *
      * @param evt Evento sobre el botón para cancelar y volver al inicio
      */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         CtrlInicio CI = new CtrlInicio(4);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-    /**
-     * Muestra una ventana para escoger el archivo
-     * @param evt Evento sobre el boton para escoger el archivo
-     */
-    private void btnAgregarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArchivoActionPerformed
-        JFileChooser escogerDireccion = new JFileChooser();
-        escogerDireccion.showOpenDialog(this);
-        String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
-        txtDireccion.setText(direc);
-        numeroDeArchivos+=1;
-        lblDireccion2.setVisible(true);
-        txtDireccion2.setVisible(true);
-        btnAgregarArchivo2.setVisible(true);
-        btnEliminar.setVisible(true);
-        
-    }//GEN-LAST:event_btnAgregarArchivoActionPerformed
-    /**
-     * Muestra una ventana para escoger el archivo
-     * @param evt Evento sobre el boton para escoger el archivo
-     */
-    private void btnAgregarArchivo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArchivo2ActionPerformed
-        JFileChooser escogerDireccion = new JFileChooser();
-        escogerDireccion.showOpenDialog(this);
-        String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
-        txtDireccion2.setText(direc);
-        numeroDeArchivos+=1;
-        lblDireccion3.setVisible(true);
-        txtDireccion3.setVisible(true);
-        btnAgregarArchivo3.setVisible(true);
-        btnEliminar2.setVisible(true);
-        btnEliminar.setVisible(false);
-        
-    }//GEN-LAST:event_btnAgregarArchivo2ActionPerformed
-    /**
-     * Muestra una ventana para escoger el archivo
-     * @param evt Evento sobre el boton para escoger el archivo
-     */
-    private void btnAgregarArchivo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArchivo3ActionPerformed
-        JFileChooser escogerDireccion = new JFileChooser();
-        escogerDireccion.showOpenDialog(this);
-        String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
-        txtDireccion3.setText(direc);
-        numeroDeArchivos+=1;
-        btnAgregarArchivo3.setVisible(true);
-        btnEliminar2.setVisible(false);
-        btnEliminar3.setVisible(true);
-    }//GEN-LAST:event_btnAgregarArchivo3ActionPerformed
-    /**
-     * Muestra una ventana para escoger el directorio destino
-     * @param evt Evento sobre el boton para escoger el destino
-     */
-    private void btnAgregarDireccionDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDireccionDestinoActionPerformed
-        JFileChooser escogerDireccion = new JFileChooser();
-        escogerDireccion.setFileSelectionMode(1);
-        escogerDireccion.showOpenDialog(this);
-        String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
-        txtDireccionDestino.setText(direc);
-        
-    }//GEN-LAST:event_btnAgregarDireccionDestinoActionPerformed
-    /**
-     * Boton para eliminar la direccion del archivo
-     * @param evt Evento sobre el boton para eliminar el archivo
-     */
-    private void btnEliminar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar3ActionPerformed
-        
-        txtDireccion3.setText(null);
-        
-        
-        btnEliminar.setVisible(false);
-        btnEliminar2.setVisible(true);
-        btnEliminar3.setVisible(false);
-        
-        numeroDeArchivos-=1;
-    }//GEN-LAST:event_btnEliminar3ActionPerformed
-    /**
-     * Boton para eliminar la direccion del archivo
-     * @param evt Evento sobre el boton para eliminar el archivo
-     */
-    private void btnEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar2ActionPerformed
-        
-        txtDireccion2.setText(null);
-        
-        
-        lblDireccion3.setVisible(false);
-        txtDireccion3.setVisible(false);
-        btnAgregarArchivo3.setVisible(false);
-        btnEliminar2.setVisible(false);
-        btnEliminar.setVisible(true);
-        
-        numeroDeArchivos-=1;
-    }//GEN-LAST:event_btnEliminar2ActionPerformed
-    /**
-     * Boton para eliminar la direccion del archivo
-     * @param evt Evento sobre el boton para eliminar el archivo
-     */
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        txtDireccion.setText(null);
-        btnEliminar.setVisible(false);
-        lblDireccion2.setVisible(false);
-        txtDireccion2.setVisible(false);
-        btnAgregarArchivo2.setVisible(false);
-        
-        numeroDeArchivos-=1;
-    }//GEN-LAST:event_btnEliminarActionPerformed
+
     /**
      * ComboBox para elegir el numero de preguntas
+     *
      * @param evt Evento sobre el ComboBox para elegir el numero de preguntas
      */
     private void comboNumeroPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNumeroPreguntasActionPerformed
-        if (comboNumeroPreguntas.getSelectedItem().toString().contains("Ingresar un número")){
+
+        if (comboNumeroPreguntas.getSelectedItem().toString().contains("Ingresar un número")) {
+
             lblNumeroPreguntas.setVisible(true);
             txtNumeroPreguntas.setVisible(true);
+
             lblOrdenAleatorio.setVisible(false);
             cBoxOrdenAleatorio.setVisible(false);
-        } else if (comboNumeroPreguntas.getSelectedItem().toString().contains("Todas")){
+
+            String numeroPreguntas = JOptionPane.showInputDialog("Escriba el número de preguntas que desea de cada examen: ");
+            //checar si tiene un numero
+            if (esNumeroPositivo(numeroPreguntas)) {
+                int numeroP = parseInt(numeroPreguntas);
+                if (numeroP > 0) {
+                    txtNumeroPreguntas.setText(numeroPreguntas);
+                    txtNumeroPreguntas.setEditable(false);
+                } else {
+                    showMessageDialog(null, "Necesita especificar un número mayor a 0");
+                }
+
+            } else {
+                showMessageDialog(null, "Necesita especificar un número");
+            }
+
+        } else if (comboNumeroPreguntas.getSelectedItem().toString().contains("Todas")) {
             lblOrdenAleatorio.setVisible(true);
             cBoxOrdenAleatorio.setVisible(true);
             lblNumeroPreguntas.setVisible(false);
             txtNumeroPreguntas.setVisible(false);
-            
-        }else{
+
+        } else {
             lblNumeroPreguntas.setVisible(false);
             txtNumeroPreguntas.setVisible(false);
             lblOrdenAleatorio.setVisible(false);
             cBoxOrdenAleatorio.setVisible(false);
         }
+
     }//GEN-LAST:event_comboNumeroPreguntasActionPerformed
+
+    private void btnAgregarExamenLatexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarExamenLatexActionPerformed
+        JFileChooser escogerDireccion = new JFileChooser();
+        escogerDireccion.showOpenDialog(this);
+        String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
+        if (direc.contains(".tex")) {
+            //checar si existe el archivo 
+            File archivo = new File(direc);
+            if (archivo.exists()) {
+                lista.addElement(direc);
+            } else {
+                showMessageDialog(null, "El examen no existe en la ruta especificada");
+            }
+
+        } else {
+            showMessageDialog(null, "Tiene que elegir un examen LaTeX");
+        }
+
+    }//GEN-LAST:event_btnAgregarExamenLatexActionPerformed
+
+    private void btnEliminarExamenListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarExamenListaActionPerformed
+        int index = jList1.getSelectedIndex();
+        if (index >= 0) {
+            lista.remove(index);
+        } else {
+            showMessageDialog(this, "No es posible eliminar");
+        }
+    }//GEN-LAST:event_btnEliminarExamenListaActionPerformed
+
+    public static boolean esNumeroPositivo(String cadena) {
+        if (cadena.isEmpty()) {
+            return false;
+        }
+
+        if (cadena.charAt(0) == '-') {
+            return false;
+        }
+        for (int i = 0; i < cadena.length(); i++) {
+            if (!Character.isDigit(cadena.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * @param args the command line arguments
@@ -482,38 +399,26 @@ public class CrearExamen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CrearExamen().setVisible(true);
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarArchivo;
-    private javax.swing.JButton btnAgregarArchivo2;
-    private javax.swing.JButton btnAgregarArchivo3;
-    private javax.swing.JButton btnAgregarDireccionDestino;
+    private javax.swing.JButton btnAgregarExamenLatex;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCrearExamen;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnEliminar2;
-    private javax.swing.JButton btnEliminar3;
+    private javax.swing.JButton btnEliminarExamenLista;
     private javax.swing.JCheckBox cBoxOrdenAleatorio;
     private javax.swing.JComboBox comboNumeroPreguntas;
-    private javax.swing.JLabel lblAgregarDireccionDestino;
+    private javax.swing.JList jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCrearExamen;
-    private javax.swing.JLabel lblDireccion;
-    private javax.swing.JLabel lblDireccion2;
-    private javax.swing.JLabel lblDireccion3;
-    private javax.swing.JLabel lblDireccionDestino;
     private javax.swing.JLabel lblEscojaOpciones;
     private javax.swing.JLabel lblMensaje;
     private javax.swing.JLabel lblNumeroDePreguntas;
     private javax.swing.JLabel lblNumeroPreguntas;
     private javax.swing.JLabel lblOrdenAleatorio;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtDireccion2;
-    private javax.swing.JTextField txtDireccion3;
-    private javax.swing.JTextField txtDireccionDestino;
     private javax.swing.JTextField txtNumeroPreguntas;
     // End of variables declaration//GEN-END:variables
 }
