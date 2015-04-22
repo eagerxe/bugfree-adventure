@@ -78,7 +78,7 @@ public class CExamen extends javax.swing.JFrame {
         setResizable(false);
 
         lblCExamen.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        lblCExamen.setText("Crear un examen LaTeX ó Moodle XML");
+        lblCExamen.setText("Crear examen LaTeX ó Moodle XML");
 
         lblTipoP.setText("Tipo de pregunta:");
 
@@ -174,10 +174,6 @@ public class CExamen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(247, Short.MAX_VALUE)
-                .addComponent(lblRespuestaCorrecta)
-                .addGap(948, 948, 948))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +186,11 @@ public class CExamen extends javax.swing.JFrame {
                                 .addComponent(lblTipoExamen, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(lblPregunta, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(lbltruefalse, javax.swing.GroupLayout.Alignment.TRAILING))))
-                    .addComponent(lblDistractor, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDistractor, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblRespuestaCorrecta, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCExamen)
@@ -273,10 +273,11 @@ public class CExamen extends javax.swing.JFrame {
                                     .addComponent(btnEliminarP)))
                             .addComponent(btnEliminarD))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnGenerarExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregarAExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAgregarAExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(btnEliminarRespuesta))
                 .addGap(45, 45, 45))
         );
@@ -289,6 +290,7 @@ public class CExamen extends javax.swing.JFrame {
      * @param evt
      */
     private void comboBTipoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBTipoPActionPerformed
+        
         if (comboBTipoP.getSelectedItem().toString().contains("truefalse")) {
             lblRespuestaCorrecta.setVisible(false);
             txtRespuestaC.setVisible(false);
@@ -378,13 +380,27 @@ public class CExamen extends javax.swing.JFrame {
      * @param evt
      */
     private void btnAgregarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRespuestaActionPerformed
-        String checarNumero = txtRespuestaC.getText();
+        //txtRespuestaC
+        
+        String checarNumero = txtRespuestaC.getText().trim();
         String tipo = (String) comboBTipoP.getSelectedItem();
-        if (tipo.contains("numerical")) {
+        if(txtRespuestaC.getText().trim().isEmpty()){
+        //if (txtRespuestaC.getText().trim().equalsIgnoreCase("")){
+            System.out.println("Vacio");
+        }else if(tipo.contains("shortanswer")){
+            
+            dlm.addElement(txtRespuestaC.getText());
+            listaRespuestas.setModel(dlm);
+            txtRespuestaC.setText(null);
+            btnAgregarRespuesta.setVisible(false);
+            
+        }else if (tipo.contains("numerical")) {
+            
             if (esNumero(checarNumero)) {
                 dlm.addElement(txtRespuestaC.getText());
                 listaRespuestas.setModel(dlm);
                 txtRespuestaC.setText(null);
+                btnAgregarRespuesta.setVisible(false);
                 
             } else {
                 showMessageDialog(null, "La respuesta debe ser numérica");
@@ -404,8 +420,14 @@ public class CExamen extends javax.swing.JFrame {
      * @param evt
      */
     private void btnEliminarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRespuestaActionPerformed
-        boolean removeElement = dlm.removeElement(listaRespuestas.getSelectedValue());
-
+        
+        if(listaRespuestas.isSelectionEmpty()){
+            
+        }else{
+            boolean removeElement = dlm.removeElement(listaRespuestas.getSelectedValue());
+            btnAgregarRespuesta.setVisible(true);
+        }
+        
     }//GEN-LAST:event_btnEliminarRespuestaActionPerformed
     DefaultListModel dlm2 = new DefaultListModel();
 
@@ -528,51 +550,79 @@ public class CExamen extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
 
             File file = fc.getSelectedFile();
+            
+            
+            
 
             if (tipoExamen.contains("Moodle")) {
-                if (file.getName().contains(".xml")) {
-                    if (file.exists()) {
+                
+                if (!file.getName().toLowerCase().endsWith(".xml")) {
+                    direccionDestino = file.getAbsolutePath() + ".xml";
+                } else {
+
+                    direccionDestino = file.getAbsolutePath();
+                }
+
+                File archivoXML = new File(direccionDestino);
+                
+                
+                
+                
+                if (archivoXML.getName().contains(".xml")) {
+                    if (archivoXML.exists()) {
                         showMessageDialog(null, "Ese nombre de examen ya existe en la ruta especificada");
                     } else {
 
-                        direccionDestino = file.getAbsolutePath();
+                        //direccionDestino = file.getAbsolutePath();
 
                         CCE.generarExamen(tipoExamen, this.direccionDestino);
 
                     }
 
-                } else if (file.getName().isEmpty()) {
+                } else if (archivoXML.getName().isEmpty()) {
                     showMessageDialog(null, "Debe escribir el nombre del examen Moodle XML");
                 } else {
                     showMessageDialog(null, "La terminación del nombre del examen debe ser .xml");
                 }
 
             } else {
+                
+                if (!file.getName().toLowerCase().endsWith(".tex")) {
+                    direccionDestino = file.getAbsolutePath() + ".tex";
+                } else {
 
-                if (file.getName().contains(".tex")) {
-                    if (file.exists()) {
+                    direccionDestino = file.getAbsolutePath();
+                }
+
+                File archivoTeX = new File(direccionDestino);
+                
+                
+                
+                
+                if (archivoTeX.getName().contains(".tex")) {
+                    if (archivoTeX.exists()) {
                         showMessageDialog(null, "Ese nombre de examen ya existe en la ruta especificada");
                     } else {
 
-                        direccionDestino = file.getAbsolutePath();
+                        //direccionDestino = archivoTeX.getAbsolutePath();
                         CCE.generarExamen(tipoExamen, this.direccionDestino);
 
                     }
 
-                } else if (file.getName().isEmpty()) {
+                } else if (archivoTeX.getName().isEmpty()) {
                     showMessageDialog(null, "Debe escribir el nombre del examen LaTeX");
                 } else {
                     showMessageDialog(null, "La terminación del nombre del examen debe ser .tex");
                 }
 
             }
-            //hasta aquí
+            
 
         } else {
-            //log.append("Cancelando");
+           
         }
 
-        //showMessageDialog(null, "Examen creado y guardado en la dirección especificada");
+        
     }//GEN-LAST:event_btnGenerarExamenActionPerformed
 
     /**
@@ -602,9 +652,13 @@ public class CExamen extends javax.swing.JFrame {
             showMessageDialog(null, "Tiene que elegir un examen LaTeX");
         }
 
-        //showMessageDialog(null, "Pregunta(s) agregada(s) en el examen LaTeX");
+        
     }//GEN-LAST:event_btnAgregarAExamenActionPerformed
-
+    /**
+     * Para saber si una cadena contiene un numero
+     * @param cadena cadena a analizar
+     * @return verdadero si la cadena contiene un numero
+     */
     public static boolean esNumero(String cadena) {
         if (cadena.isEmpty()) {
             return false;

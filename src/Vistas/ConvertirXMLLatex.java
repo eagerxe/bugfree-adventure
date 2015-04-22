@@ -47,7 +47,7 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
 
         lblConvertirExamen.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        lblConvertirExamen.setText("Convertir un examen de XML Moodle a LaTeX");
+        lblConvertirExamen.setText("Convertir examen Moodle XML a LaTeX");
 
         lblAgregueDireccion.setText("Agregue el examen Moodle XML");
 
@@ -97,7 +97,7 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAgregarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addContainerGap(328, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +128,7 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
         JFileChooser escogerDireccion = new JFileChooser();
         escogerDireccion.showOpenDialog(this);
         String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
-        direccionPadre = escogerDireccion.getSelectedFile().getParent();
+        //direccionPadre = escogerDireccion.getSelectedFile().getParent();
         if (direc.contains(".xml")) {
             //checar si existe el archivo 
             File archivo = new File(direc);
@@ -174,20 +174,33 @@ public class ConvertirXMLLatex extends javax.swing.JFrame {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 
                 File file = fc.getSelectedFile();
-                if (file.getName().contains(".tex")) {
-                    if (file.exists()) {
+                
+                if (!file.getName().toLowerCase().endsWith(".tex")) {
+                    direccionDestino = file.getAbsolutePath() + ".tex";
+                } else {
+
+                    direccionDestino = file.getAbsolutePath();
+                }
+
+                File archivoTeX = new File(direccionDestino);
+                direccionPadre = archivoTeX.getParent();
+                
+                
+                if (archivoTeX.getName().contains(".tex")) {
+                    if (archivoTeX.exists()) {
                         showMessageDialog(null, "Ese nombre de examen ya existe en la ruta especificada");
                     } else {
 
-                        direccionDestino = file.getAbsolutePath();
+                        //direccionDestino = file.getAbsolutePath();
                         
+                        //direccionPadre = escogerDireccion.getSelectedFile().getParent();
                         
                         
                         CtrlConvertirXMLtoLatex CXTL = new CtrlConvertirXMLtoLatex(direccionOrigen,direccionDestino,direccionPadre);
                         
                     }
 
-                } else if (file.getName().isEmpty()) {
+                } else if (archivoTeX.getName().isEmpty()) {
                     showMessageDialog(null, "Debe escribir el nombre del examen LaTeX");
                 } else {
                     showMessageDialog(null, "La terminación del nombre del examen debe ser .tex");

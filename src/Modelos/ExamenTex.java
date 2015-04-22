@@ -42,6 +42,7 @@ public class ExamenTex {
                 //cabecera del examen
                 pw.write("\\documentclass [addpoints,100pt]{exam}\n"
                         + "\\usepackage{graphicx}\n"
+                        + "\\usepackage[utf8]{inputenc}\n"
                         + "\\begin{document}\n"
                         + "\t\\begin{center}\n"
                         + "\t\\fbox {\\fbox{\\parbox{5.5 in}{\\centering\n"

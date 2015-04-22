@@ -9,11 +9,13 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  * Vista ConvertirLatexXML
+ *
  * @author miguelhernandez
  */
 public class ConvertirLatexXML extends javax.swing.JFrame {
+
     private String direccionPadre;
-    JFileChooser fc;
+
     /**
      * Creates new form ConvertirLatexXML
      */
@@ -114,6 +116,7 @@ public class ConvertirLatexXML extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Botón para cancelar y regresar a la vista Inicio
+     *
      * @param evt Evento sobre el botón para regresar al inicio
      */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -122,6 +125,7 @@ public class ConvertirLatexXML extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
     /**
      * Muestra una ventana para escoger el archivo
+     *
      * @param evt Evento sobre el botón para escoger el archivo
      */
     private void btnAgregarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArchivoActionPerformed
@@ -130,7 +134,7 @@ public class ConvertirLatexXML extends javax.swing.JFrame {
         String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
         //Obtener la direccion de la carpeta padre para encontrar ahi las imagenes
         direccionPadre = escogerDireccion.getSelectedFile().getParent();
-        
+
         if (direc.contains(".tex")) {
             //checar si existe el archivo 
             File archivo = new File(direc);
@@ -144,49 +148,55 @@ public class ConvertirLatexXML extends javax.swing.JFrame {
         } else {
             showMessageDialog(null, "Tiene que elegir un examen LaTeX");
         }
-        
-        
+
+
     }//GEN-LAST:event_btnAgregarArchivoActionPerformed
 
-   /**
+    /**
      * Botón para comenzar con la conversion del examen LaTeX a XML Moodle
+     *
      * @param evt Evento sobre el boton para iniciar la conversión
      */
     private void btnConvertirExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirExamenActionPerformed
-        String direccionOrigen,direccionDestino;
-        direccionOrigen=txtDireccionOrigen.getText();
-        
-        
-        
-        fc = new JFileChooser();
-        
-        
+        String direccionOrigen, direccionDestino;
+        direccionOrigen = txtDireccionOrigen.getText();
+
+        JFileChooser fc = new JFileChooser();
+
         if (!direccionOrigen.isEmpty()) {
 
             int returnVal = fc.showSaveDialog(this);
+
             if (returnVal == JFileChooser.APPROVE_OPTION) {
-                
+
                 File file = fc.getSelectedFile();
-                if (file.getName().contains(".xml")) {
-                    if (file.exists()) {
+
+                if (!file.getName().toLowerCase().endsWith(".xml")) {
+                    direccionDestino = file.getAbsolutePath() + ".xml";
+                } else {
+
+                    direccionDestino = file.getAbsolutePath();
+                }
+
+                File archivoXML = new File(direccionDestino);
+
+                if (archivoXML.getName().contains(".xml")) {
+                    if (archivoXML.exists()) {
                         showMessageDialog(null, "Ese nombre de examen ya existe en la ruta especificada");
                     } else {
 
-                        direccionDestino = file.getAbsolutePath();
-                        
+                        //direccionDestino = file.getAbsolutePath();
                         //direccionDestino=txtDireccionDestino.getText();
-                        CtrlConvertirLatextoXML CLTX = new CtrlConvertirLatextoXML(direccionOrigen,direccionDestino,direccionPadre);
+                        CtrlConvertirLatextoXML CLTX = new CtrlConvertirLatextoXML(direccionOrigen, direccionDestino, direccionPadre);
 
-                        
                     }
 
-                } else if (file.getName().isEmpty()) {
+                } else if (archivoXML.getName().isEmpty()) {
                     showMessageDialog(null, "Debe escribir el nombre del examen Moodle XML");
                 } else {
                     showMessageDialog(null, "La terminación del nombre del examen debe ser .xml");
                 }
 
-                
             } else {
                 //log.append("Cancelando");
             }
@@ -194,7 +204,7 @@ public class ConvertirLatexXML extends javax.swing.JFrame {
             showMessageDialog(null, "Necesita agregar un examen LaTeX");
 
         }
-        
+
         //showMessageDialog(null, "Examen creado");
         //dispose();
     }//GEN-LAST:event_btnConvertirExamenActionPerformed

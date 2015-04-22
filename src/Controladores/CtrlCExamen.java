@@ -17,6 +17,9 @@ public class CtrlCExamen {
     Examen examen;
     Pregunta P;
     
+    /**
+     * 
+     */
     public CtrlCExamen(){
         examen = new Examen();
     }

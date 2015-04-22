@@ -44,14 +44,14 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnLatextoXML.setText("Convertir examen de LaTeX a Moodle XML");
+        btnLatextoXML.setText("Convertir examen LaTeX a Moodle XML");
         btnLatextoXML.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLatextoXMLActionPerformed(evt);
             }
         });
 
-        btnXMLtoLatex.setText("Convertir examen de Moodle XML a LaTeX");
+        btnXMLtoLatex.setText("Convertir examen Moodle XML a LaTeX");
         btnXMLtoLatex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXMLtoLatexActionPerformed(evt);

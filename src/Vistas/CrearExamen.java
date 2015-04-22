@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ListModel;
 
 /**
  * Vista Crear Examen
@@ -222,7 +223,7 @@ public class CrearExamen extends javax.swing.JFrame {
             numeroP = txtNumeroPreguntas.getText();
         }
         Boolean aleatorio = cBoxOrdenAleatorio.isSelected();
-        
+
         //Obtener direcciones del jlist1
         System.out.println(jList1.getModel());
 
@@ -237,28 +238,41 @@ public class CrearExamen extends javax.swing.JFrame {
         if (numeroElementos > 0) {
 
             int returnVal = fc.showSaveDialog(this);
+            
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 
+                
                 File file = fc.getSelectedFile();
-                if (file.getName().contains(".tex")) {
-                    if (file.exists()) {
+                //agregar extension
+                //String nombreTex= file.getName()+".tex";
+                //String filePath=file.getPath();
+                
+                if(!file.getName().toLowerCase().endsWith(".tex")){
+                    direccionDestino = file.getAbsolutePath()+".tex";
+                }else{
+                    
+                    direccionDestino = file.getAbsolutePath();
+                }
+                
+                File archivoTex = new File(direccionDestino);
+                
+                if (archivoTex.getName().toLowerCase().endsWith(".tex")) {
+                    if (archivoTex.exists()) {
                         showMessageDialog(null, "Ese nombre de examen ya existe en la ruta especificada");
                     } else {
 
-                        direccionDestino = file.getAbsolutePath();
-                        log.append("Guardando: " + file.getName());
+                        //direccionDestino = file.getAbsolutePath();
+                        //log.append("Guardando: " + file.getName());
                         
-
                         CCE = new CtrlCrearExamen(direccionesOrigen, direccionDestino, aleatorio, numeroP);
                     }
 
-                } else if (file.getName().isEmpty()) {
+                } else if (archivoTex.getName().isEmpty()) {
                     showMessageDialog(null, "Debe escribir el nombre del examen LaTeX");
                 } else {
                     showMessageDialog(null, "La terminación del nombre del examen debe ser .tex");
                 }
 
-                
             } else {
                 log.append("Cancelando");
             }
@@ -328,9 +342,26 @@ public class CrearExamen extends javax.swing.JFrame {
         JFileChooser escogerDireccion = new JFileChooser();
         escogerDireccion.showOpenDialog(this);
         String direc = escogerDireccion.getSelectedFile().getAbsolutePath();
-        if (direc.contains(".tex")) {
+        File archivo = new File(direc);
+        String nombreBuscar=archivo.getName();
+        int encontrado = 0;
+        ListModel model = jList1.getModel();
+        for (int i = 0; i < model.getSize(); i++) {
+            String direccion;
+            direccion = (String) model.getElementAt(i);
+            
+            if (direccion.contains(nombreBuscar)){
+                encontrado++;
+                
+            }
+            
+        }
+        if(encontrado>0){
+            showMessageDialog(null, "El examen "+ nombreBuscar +" ya fue agregado");
+        }else if (direc.contains(".tex")) {
             //checar si existe el archivo 
-            File archivo = new File(direc);
+            
+            
             if (archivo.exists()) {
                 lista.addElement(direc);
             } else {
@@ -351,7 +382,11 @@ public class CrearExamen extends javax.swing.JFrame {
             showMessageDialog(this, "No es posible eliminar");
         }
     }//GEN-LAST:event_btnEliminarExamenListaActionPerformed
-
+    /**
+     * Para saber si una cadena contiene un número positivo
+     * @param cadena cadena a analizar
+     * @return true si la cadena tiene un número positivo
+     */
     public static boolean esNumeroPositivo(String cadena) {
         if (cadena.isEmpty()) {
             return false;
